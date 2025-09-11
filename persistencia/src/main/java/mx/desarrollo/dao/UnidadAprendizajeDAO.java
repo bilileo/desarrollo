@@ -15,20 +15,14 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
         this.entityManager = em;
     }
 
-    public List<Unidadaprendizaje> obtenerTodos(){
-        return entityManager
-                .createQuery("SELECT a FROM Alumno a", Unidadaprendizaje.class)
-                .getResultList();
-    }
-
-    /*public void guardar(Unidadaprendizaje unidad) {
+    public void guardar(Unidadaprendizaje unidad) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
             tx.begin();
             entityManager.createNativeQuery(
                             "INSERT INTO unidadaprendizaje (Nombre,HrsClase,HrsTaller,HrsLab) VALUES (?,?,?,?)")
                     .setParameter(1, unidad.getNombre())
-                    .setParameter(2, .unidad.getHrsClase())
+                    .setParameter(2, unidad.getHrsClase())
                     .setParameter(3, unidad.getHrsTaller())
                     .setParameter(4, unidad.getHrsLab())
                     .executeUpdate();
@@ -39,9 +33,9 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
             }
             throw e;
         }
-    }*/
+    }
 
-    public void guardar(Unidadaprendizaje unidad) {
+    /*public void guardar(Unidadaprendizaje unidad) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
             tx.begin();
@@ -51,7 +45,7 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
             if (tx.isActive()) tx.rollback();
             throw e;
         }
-    }
+    }*/
 
     @Override
     public EntityManager getEntityManager() {
