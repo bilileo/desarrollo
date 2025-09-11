@@ -7,24 +7,20 @@ package mx.desarrollo.helper;
 
 
 
-import mx.desarollo.entity.Usuario;
+import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
 
-public class LoginHelper implements Serializable {
-    
+public class AltaUnidadaprendizajeHelper implements Serializable {
+
 
     /**
      * Metodo para hacer login llamara a la instancia de usuarioFacade
-     * @param correo
-     * @param password
-     * @return 
+     * @return
      */
-    public Usuario Login(String correo, String password){
-        return ServiceFacadeLocator.getInstanceFacadeUsuario().login(password, correo);
+
+    public void AltaUA(Unidadaprendizaje UA){
+        ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().guardarUA(UA);
     }
-    
-    
-    
 }

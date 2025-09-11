@@ -11,8 +11,8 @@ public class FacadeUnidadAprendizaje {
         this.delegateUnidadAprendizaje = new DelegateUnidadAprendizaje();
     }
 
-    public void guardarAlumno(Unidadaprendizaje unidadaprendizaje){
-        delegateUnidadAprendizaje.saveUnidadAprendizaje(unidadaprendizaje);
+    public void guardarUA(Unidadaprendizaje UA){
+        delegateUnidadAprendizaje.saveUnidadAprendizaje(UA);
     }
 
 }
