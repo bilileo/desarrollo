@@ -11,22 +11,22 @@ import mx.desarrollo.persistence.HibernateUtil;
  */
 public class ServiceLocator {
 
-    private static AlumnoDAO alumnoDAO;
     private static UsuarioDAO usuarioDAO;
+    private static UnidadAprendizajeDAO unidadAprendizajeDAO;
 
     private static EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager();
     }
 
     /**
-     * se crea la instancia para alumno DAO si esta no existe
+     * se crea la instancia para UnidadAprendizajeDAO si esta no existe
      */
-    public static AlumnoDAO getInstanceAlumnoDAO(){
-        if(alumnoDAO == null){
-            alumnoDAO = new AlumnoDAO(getEntityManager());
-            return alumnoDAO;
+    public static UnidadAprendizajeDAO getInstanceUnidadAprendizajeDAO(){
+        if(unidadAprendizajeDAO == null){
+            unidadAprendizajeDAO = new UnidadAprendizajeDAO(getEntityManager());
+            return unidadAprendizajeDAO;
         } else{
-            return alumnoDAO;
+            return unidadAprendizajeDAO;
         }
     }
     /**

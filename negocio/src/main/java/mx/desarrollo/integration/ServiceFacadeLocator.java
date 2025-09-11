@@ -1,19 +1,19 @@
 package mx.desarrollo.integration;
 
-import mx.desarrollo.facade.FacadeAlumno;
+import mx.desarrollo.facade.FacadeUnidadAprendizaje;
 import mx.desarrollo.facade.FacadeUsuario;
 
 public class ServiceFacadeLocator {
 
-    private static FacadeAlumno facadeAlumno;
+    private static FacadeUnidadAprendizaje facadeUnidadAprendizaje;
     private static FacadeUsuario facadeUsuario;
 
-    public static FacadeAlumno getInstanceFacadeAlumno() {
-        if (facadeAlumno == null) {
-            facadeAlumno = new FacadeAlumno();
-            return facadeAlumno;
+    public static FacadeUnidadAprendizaje getInstanceFacadeUnidadAprendizaje() {
+        if (facadeUnidadAprendizaje == null) {
+            facadeUnidadAprendizaje = new FacadeUnidadAprendizaje();
+            return facadeUnidadAprendizaje;
         } else {
-            return facadeAlumno;
+            return facadeUnidadAprendizaje;
         }
     }
 
