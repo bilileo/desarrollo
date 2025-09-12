@@ -18,6 +18,7 @@ import java.io.Serializable;
 @SessionScoped
 public class AltaUABeanUI implements Serializable {
 
+    // comentario de prueba1
     private AltaUnidadaprendizajeHelper guardarHelper;
     private String nombre;
     private Byte hrsClase;
