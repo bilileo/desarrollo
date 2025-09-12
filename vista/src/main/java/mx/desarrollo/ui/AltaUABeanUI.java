@@ -19,6 +19,7 @@ import java.io.Serializable;
 public class AltaUABeanUI implements Serializable {
 
     // comentario de prueba1
+    // comentario de prueba2
     private AltaUnidadaprendizajeHelper guardarHelper;
     private String nombre;
     private Byte hrsClase;
