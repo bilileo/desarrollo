@@ -45,34 +45,57 @@
             }
         </style>
     </h:head>
-
     <h:body>
-        <div class = "row">
-           
-            <h:form>
-               
-                <p:messages id="messages" showDetail="true" closable="true">
-                     
-                </p:messages>
-                <div class="login">
+        <div class="row">
+            <h:form id="formAltaUA">
+
+                <!-- mensajes de validación / confirmación -->
+                <p:messages id="messages" showDetail="true" closable="true" />
+
+                <div class="panel">
                     <div class="panel-header">
                         <p:graphicImage url="resources/uabcl.png" class="logo" />
+                        <h2>Alta de Unidad de Aprendizaje</h2>
                     </div>
+
                     <div class="panel-body">
-                        <div class=" form-group">
-                            <p:inputText class ="form-control" placeholder ="Correo:" autocomplete="false" value ="#{loginUI.usuario.correo}" />
-                        </div>
+                        <!-- Campo Nombre -->
                         <div class="form-group">
-                            <p:password class ="form-control" placeholder="Contraseña: " value="#{loginUI.usuario.contrasena}" />
+                            <p:inputText class="form-control"
+                                         placeholder="Nombre de la UA"
+                                         value="#{altaUABeanUI.nombre}" />
                         </div>
-                        <p:commandButton update="messages" class = "btn btn-success" value ="Iniciar sesion" actionListener ="#{loginUI.login()}" />
-                        <p:commandButton outcome="/index.xhtml" value="Ir a index" class = "btn btn-primary"/>
+
+                        <!-- Campo Horas Clase -->
+                        <div class="form-group">
+                            <p:inputText class="form-control"
+                                         placeholder="Horas Clase"
+                                         value="#{altaUABeanUI.hrsClase}" />
+                        </div>
+
+                        <!-- Campo Horas Taller -->
+                        <div class="form-group">
+                            <p:inputText class="form-control"
+                                         placeholder="Horas Taller"
+                                         value="#{altaUABeanUI.hrsTaller}" />
+                        </div>
+
+                        <!-- Campo Horas Lab -->
+                        <div class="form-group">
+                            <p:inputText class="form-control"
+                                         placeholder="Horas Laboratorio"
+                                         value="#{altaUABeanUI.hrsLab}" />
+                        </div>
+
+                        <!-- Botón Guardar -->
+                        <p:commandButton value="Guardar"
+                                         action="#{altaUABeanUI.alta}"
+                                         update="messages"/>
+
                     </div>
                 </div>
-                
             </h:form>
-            
         </div>
-            
     </h:body>
+
 </html>

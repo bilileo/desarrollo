@@ -7,11 +7,6 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Declaración manual de entidades -->
-        <class>mx.desarollo.entity.Alumno</class>
-        <class>mx.desarollo.entity.Usuario</class>
-        <class>mx.desarollo.entity.AsignadoId</class>
-        <class>mx.desarollo.entity.Asignado</class>
-        <class>mx.desarollo.entity.Profesor</class>
         <class>mx.desarollo.entity.Unidadaprendizaje</class>
 
         <properties>
