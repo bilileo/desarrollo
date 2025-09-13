@@ -9,7 +9,7 @@ public class FacadeAsignacionUnidadProfesor {
         this.delegateAsignacion = new DelegateAsignacionUnidadProfesor();
     }
 
-    public void guardarUA(Integer idProfesor, Integer idUA) {
+    public void asignar(Integer idProfesor, Integer idUA) {
         delegateAsignacion.asignar(idProfesor, idUA);
     }
 }
