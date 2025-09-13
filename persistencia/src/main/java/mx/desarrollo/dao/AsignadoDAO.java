@@ -2,6 +2,7 @@ package mx.desarrollo.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import mx.desarollo.entity.Asignado;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarollo.persistence.AbstractDAO;
 
@@ -15,7 +16,7 @@ public class AsignadoDAO extends AbstractDAO<AsignadoDAO> {
         this.entityManager = em;
     }
 
-    public void asignar(AsignadoDAO asignacion) {
+    public void asignar(Asignado asignacion) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
             tx.begin();
