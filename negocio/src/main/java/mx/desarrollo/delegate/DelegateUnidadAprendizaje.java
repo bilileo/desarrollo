@@ -5,7 +5,6 @@ import mx.desarrollo.integration.ServiceLocator;
 
 public class DelegateUnidadAprendizaje {
     public void saveUnidadAprendizaje(Unidadaprendizaje UA){
-        ServiceLocator.guardarUnidadAprendizaje(UA);
+        ServiceLocator.getInstanceUnidadAprendizajeDAO().guardar(UA);
     }
-
 }
