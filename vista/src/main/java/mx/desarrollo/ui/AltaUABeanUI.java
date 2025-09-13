@@ -7,7 +7,11 @@ package mx.desarrollo.ui;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.FacesValidator;
+import jakarta.faces.validator.Validator;
+import jakarta.faces.validator.ValidatorException;
 import jakarta.inject.Named;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.helper.AltaUnidadaprendizajeHelper;
@@ -23,14 +27,29 @@ public class AltaUABeanUI implements Serializable {
     private Byte hrsClase;
     private Byte hrsTaller;
     private Byte hrsLab;
+    Unidadaprendizaje ua;
 
     public AltaUABeanUI() {
         guardarHelper = new AltaUnidadaprendizajeHelper();
+         ua = new Unidadaprendizaje();
+    }
+
+    public String limpiar() {
+        try {
+            this.nombre = null;
+            this.hrsClase = null;
+            this.hrsTaller = null;
+            this.hrsLab = null;
+
+            this.ua = new Unidadaprendizaje();
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
     }
 
     public void alta() {
         try {
-            Unidadaprendizaje ua = new Unidadaprendizaje();
             ua.setNombre(nombre);
             ua.setHrsClase(hrsClase);
             ua.setHrsTaller(hrsTaller);
@@ -45,8 +64,7 @@ public class AltaUABeanUI implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Verifica que las horas esten en un rango de 1 a 4 hrs...",null));
-            e.printStackTrace();
+                            "Registro Invalido","Verifica que las Hrs esten en un rango de 0 a 4 hrs..."));
         }
     }
 
@@ -62,5 +80,8 @@ public class AltaUABeanUI implements Serializable {
 
     public Byte getHrsLab() { return hrsLab; }
     public void setHrsLab(Byte hrsLab) { this.hrsLab = hrsLab; }
+
 }
+
+
 
