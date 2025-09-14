@@ -1,6 +1,7 @@
 package mx.desarrollo.integration;
 
 import jakarta.persistence.EntityManager;
+import mx.desarollo.entity.Profesor;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.dao.*;
 import mx.desarrollo.persistence.HibernateUtil;
@@ -13,6 +14,7 @@ import mx.desarrollo.persistence.HibernateUtil;
 public class ServiceLocator {
 
     private static UnidadAprendizajeDAO unidadAprendizajeDAO;
+    private static ProfesorDAO profesorDAO;
 
     private static EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager();
@@ -44,4 +46,27 @@ public class ServiceLocator {
         }
     }
 
+    // ----- PROFESOR -----
+
+    // obtener instancia
+    public static ProfesorDAO getInstanceProfesorDAO(){
+        if(profesorDAO == null){
+            profesorDAO = new ProfesorDAO(getEntityManager());
+        }
+        return profesorDAO;
+    }
+    // guardar el profesor
+    public static void guardarProfesor(Profesor profe){
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            getInstanceProfesorDAO().guardar(profe);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex; // relanzar o manejar el error
+        }
+    }
 }

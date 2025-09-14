@@ -3,7 +3,7 @@ package mx.desarrollo.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import mx.desarollo.entity.Profesor;
-import mx.desarollo.persistence.AbstractDAO;
+import mx.desarrollo.persistence.AbstractDAO;
 
 import java.util.List;
 
