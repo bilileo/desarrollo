@@ -8,11 +8,11 @@ import mx.desarollo.persistence.AbstractDAO;
 
 import java.util.List;
 
-public class AsignadoDAO extends AbstractDAO<AsignadoDAO> {
+public class AsignadoDAO extends AbstractDAO<Asignado> {
     private final EntityManager entityManager;
 
     public AsignadoDAO(EntityManager em) {
-        super(AsignadoDAO.class);
+        super(Asignado.class);
         this.entityManager = em;
     }
 
@@ -20,7 +20,14 @@ public class AsignadoDAO extends AbstractDAO<AsignadoDAO> {
         EntityTransaction tx = entityManager.getTransaction();
         try {
             tx.begin();
-            entityManager.persist(asignacion);
+            entityManager.createNativeQuery(
+                            "INSERT INTO asignado (Id_profesor, Id_ua,HrsClase,HrsTaller,HrsLab) VALUES (?,?,?,?,?)")
+                    .setParameter(1, asignacion.getId().getIdProfesor())
+                    .setParameter(2, asignacion.getId().getIdUa())
+                    .setParameter(3, asignacion.getHrsClase())
+                    .setParameter(4, asignacion.getHrsTaller())
+                    .setParameter(5, asignacion.getHrsLab())
+                    .executeUpdate();
             tx.commit();
         } catch (Exception e) {
             if (tx.isActive()) {
