@@ -36,7 +36,9 @@ public class AltaProfeBeanUI implements Serializable {
 
     // Registrar
     public void alta(){
-        try{
+        try {
+            //validar antes de guardar
+            validarRFC(nombre, apellidoP, apellidoM, fechaNacimiento, rfc);
             profe.setNombre(nombre);
             profe.setApellidoP(apellidoP);
             profe.setApellidoM(apellidoM);
@@ -48,10 +50,12 @@ public class AltaProfeBeanUI implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Registro Exitoso",
                             "Profesor Registrado"));
+        } catch (ValidatorException ve){
+            FacesContext.getCurrentInstance().addMessage(null, ve.getFacesMessage());
         } catch (Exception e){
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Error al registrar el profesor. Verifica los datos",null));
+                            "Error al registrar el profesor. Verifica los datos",e.getMessage()));
             e.printStackTrace();
         }
     }
@@ -68,8 +72,8 @@ public class AltaProfeBeanUI implements Serializable {
     }
 
     // validar formato del rfc
-    public void validarRFC(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        String entradaRFC = ((String) value).toUpperCase();
+    public void validarRFC(String nom,String apP,String apM,LocalDate fechaNac,String rfc) throws ValidatorException {
+        String entradaRFC = rfc.toUpperCase();
 
         // longitud
         if(entradaRFC == null || entradaRFC.length() !=13){
@@ -86,20 +90,24 @@ public class AltaProfeBeanUI implements Serializable {
                     "El formato del RFC está incorrecto."));
         }
 
-        // iniciales de nombre y apellidos
-        String inicialesEsperadas = ((apellidoP != null ? apellidoP.substring(0, Math.min(2, apellidoP.length())) : "") +
-                        (apellidoM != null ? apellidoM.substring(0, Math.min(1, apellidoM.length())) : "") +
-                        (nombre != null ? nombre.substring(0, Math.min(1, nombre.length())) : "")).toUpperCase();
-        String inicialesIntroducidas = entradaRFC.substring(0,4).toUpperCase();
-        if (!entradaRFC.startsWith(inicialesEsperadas)){
-            throw  new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+        // Validar iniciales
+        String inicialesEsperadas =
+                ((apP != null ? apP.substring(0, Math.min(2, apP.length())) : "") +
+                        (apM != null ? apM.substring(0, Math.min(1, apM.length())) : "") +
+                        (nom != null ? nom.substring(0, Math.min(1, nom.length())) : ""))
+                        .toUpperCase();
+
+        String inicialesIntroducidas = rfc.substring(0, 4).toUpperCase();
+
+        if (!inicialesIntroducidas.equals(inicialesEsperadas)) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Registro inválido.",
                     "Las primeras letras del RFC no coinciden con nombre y apellidos."));
         }
 
         // fecha de nacimiento
         if(fechaNacimiento != null){
-            String fechaEsperada = fechaNacimiento.format(DateTimeFormatter.ofPattern("yyMMdd"));
+            String fechaEsperada = fechaNac.format(DateTimeFormatter.ofPattern("yyMMdd"));
             String fechaIntroducida = entradaRFC.substring(4,10);
             if(!fechaIntroducida.equals(fechaEsperada)){
                 throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,

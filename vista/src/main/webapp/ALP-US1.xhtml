@@ -67,7 +67,7 @@
                                 pattern="dd/MM/yyyy"
                                 placeholder="Fecha de Nacimiento"
                                 required="true"
-                                yearRange="1924:2010"
+                                yearRange="1950:2010"
                                 showButtonPanel="true"
                                 navigator="true"
                                 requiredMessage="Ingresa fecha de nacimiento."/>
@@ -78,7 +78,6 @@
                                      placeholder="RFC"
                                      maxlength="13"
                                      value="#{altaProfeBeanUI.rfc}"
-                                     validator="#{altaProfeBeanUI.validarRFC}"
                                      required="true"
                                      requiredMessage="El campo RFC es obligatorio"/>
                     </div>
@@ -90,9 +89,8 @@
                                      styleClass="btn btn-success"/>
                     <p:commandButton value="Limpiar campos"
                                      action="#{altaProfeBeanUI.limpiar}"
-                                     update="formAltaProfe messages"
-                                     immediate="true"
-                                     styleClass="btn btn-warning"/>
+                                     update="@form"
+                                     process="@this"/>
                 </div>
             </div>
         </h:form>
