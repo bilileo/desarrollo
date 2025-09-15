@@ -6,17 +6,19 @@
   <display-name>Archetype Created Web Application</display-name>
 
 
-  <context-param>
-    <!--<param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>--><!--LA LINEA 4 Y 5 SON PARA DEVOLVER EL TEMA DE DISEÑO POR DEFAULT-->
-    <param-name>primefaces.THEME</param-name><!--LA LINE 6 Y 7 SON PARA CAMBIAR EL TEMA DE DISEÑO DE LA APPWEB LOS LAYOUTS SE ENCUENTRAN EN LA LIGA-->
-    <param-value>south-street</param-value><!--http://primefaces.org/themes-->
-  </context-param>
+<!--  <context-param>-->
+<!--    &lt;!&ndash;<param-name>javax.faces.PROJECT_STAGE</param-name>-->
+<!--    <param-value>Development</param-value>&ndash;&gt;&lt;!&ndash;LA LINEA 4 Y 5 SON PARA DEVOLVER EL TEMA DE DISEÑO POR DEFAULT&ndash;&gt;-->
+<!--    <param-name>primefaces.THEME</param-name>&lt;!&ndash;LA LINE 6 Y 7 SON PARA CAMBIAR EL TEMA DE DISEÑO DE LA APPWEB LOS LAYOUTS SE ENCUENTRAN EN LA LIGA&ndash;&gt;-->
+<!--    <param-value>south-street</param-value>&lt;!&ndash;http://primefaces.org/themes&ndash;&gt;-->
+<!--  </context-param>-->
+
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
