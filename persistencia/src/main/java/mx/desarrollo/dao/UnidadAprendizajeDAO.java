@@ -35,6 +35,30 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
         }
     }
 
+    // eliminar (metodo abstracto)
+    public void eliminarUA(Unidadaprendizaje ua){
+        delete(ua);
+    }
+
+    // validar si tiene profesores asignados
+    public boolean tieneProfesAsignados(int uaID){
+        EntityTransaction tx = entityManager.getTransaction();
+        try{
+            tx.begin();
+            Long count = (Long) entityManager.createNativeQuery(
+                            "SELECT COUNT(*) FROM asignado WHERE Id_ua = ?")
+                    .setParameter(1,uaID)
+                    .getSingleResult();
+            tx.commit();
+            return count > 0;
+        } catch(Exception e){
+            if(tx.isActive()){
+                tx.rollback();
+            }
+            throw e;
+        }
+    }
+
     /*public void guardar(Unidadaprendizaje unidad) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
