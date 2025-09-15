@@ -18,6 +18,6 @@ public class FacadeUnidadAprendizaje {
     }
 
     public List<Unidadaprendizaje> consultarTodasUA() {
-        return delegateUnidadAprendizaje.findAll();
+        return delegateUnidadAprendizaje.findAllUA();
     }
 }
