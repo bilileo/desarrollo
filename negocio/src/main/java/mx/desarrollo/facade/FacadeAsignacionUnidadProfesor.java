@@ -9,7 +9,7 @@ public class FacadeAsignacionUnidadProfesor {
         this.delegateAsignacion = new DelegateAsignacionUnidadProfesor();
     }
 
-    public void asignar(Integer idProfesor, Integer idUA) {
-        delegateAsignacion.asignar(idProfesor, idUA);
+    public boolean asignar(Integer idProfesor, Integer idUA, boolean[] lunes, boolean[] martes, boolean[] miercoles, boolean[] jueves, boolean[] viernes){
+        return delegateAsignacion.asignar(idProfesor, idUA, lunes, martes, miercoles, jueves, viernes);
     }
 }

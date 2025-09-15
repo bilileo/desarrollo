@@ -27,6 +27,21 @@ public class Asignado {
     @Column(name = "HrsLab")
     private Byte hrsLab;
 
+    @Column(name = "Lunes")
+    private byte[] lunes;
+
+    @Column(name = "Martes")
+    private byte[] martes;
+
+    @Column(name = "Miercoles")
+    private byte[] miercoles;
+
+    @Column(name = "Jueves")
+    private byte[] jueves;
+
+    @Column(name = "Viernes")
+    private byte[] viernes;
+
     public AsignadoId getId() {
         return id;
     }
@@ -73,6 +88,46 @@ public class Asignado {
 
     public void setHrsLab(Byte hrsLab) {
         this.hrsLab = hrsLab;
+    }
+
+    public byte[] getLunes() {
+        return lunes;
+    }
+
+    public void setLunes(byte[] lunes) {
+        this.lunes = lunes;
+    }
+
+    public byte[] getMartes() {
+        return martes;
+    }
+
+    public void setMartes(byte[] martes) {
+        this.martes = martes;
+    }
+
+    public byte[] getMiercoles() {
+        return miercoles;
+    }
+
+    public void setMiercoles(byte[] miercoles) {
+        this.miercoles = miercoles;
+    }
+
+    public byte[] getJueves() {
+        return jueves;
+    }
+
+    public void setJueves(byte[] jueves) {
+        this.jueves = jueves;
+    }
+
+    public byte[] getViernes() {
+        return viernes;
+    }
+
+    public void setViernes(byte[] viernes) {
+        this.viernes = viernes;
     }
 
 }
