@@ -10,7 +10,7 @@ public class DelegateUnidadAprendizaje {
         ServiceLocator.getInstanceUnidadAprendizajeDAO().guardar(UA);
     }
 
-    public List<Unidadaprendizaje> findAll(){
+    public List<Unidadaprendizaje> findAllUA(){
         return ServiceLocator.getInstanceUnidadAprendizajeDAO().findAll();
     }
 }

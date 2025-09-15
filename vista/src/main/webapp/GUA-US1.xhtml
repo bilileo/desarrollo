@@ -82,7 +82,7 @@
                 <div class="panel">
                     <div class="panel-header">
                         <div class = "Titulo">
-                            <p:button value="Regresar" outcome="GUA-US1.xhtml" />
+                            <p:button value="Regresar" outcome="GUA-US2.xhtml" />
                             <h2>Alta de Unidad de Aprendizaje</h2>
                         </div>
                         <div class = "Enlaces">
@@ -95,7 +95,7 @@
                         <div class="form-group">
                             <p:inputText class="form-control"
                                          placeholder="Nombre de la UA"
-                                         value="#{altaUABeanUI.nombre}"
+                                         value="#{UABeanUI.nombre}"
                                          required="true"
                                          requiredMessage="El campo Nombre es obligatorio"/>
                         </div>
@@ -105,7 +105,7 @@
                             <p:inputMask class="form-control"
                                          mask="9"
                                          placeholder="Horas Clase"
-                                         value="#{altaUABeanUI.hrsClase}"/>
+                                         value="#{UABeanUI.hrsClase}"/>
                         </div>
 
                         <!-- Campo Horas Taller -->
@@ -113,7 +113,7 @@
                             <p:inputMask class="form-control"
                                          mask="9"
                                          placeholder="Horas Taller"
-                                         value="#{altaUABeanUI.hrsTaller}"/>
+                                         value="#{UABeanUI.hrsTaller}"/>
                         </div>
 
                         <!-- Campo Horas Lab -->
@@ -122,15 +122,15 @@
                                          class="form-control"
                                          mask="9"
                                          placeholder="Horas Laboratorio"
-                                         value="#{altaUABeanUI.hrsLab}" />
+                                         value="#{UABeanUI.hrsLab}" />
                         </div>
 
                         <!-- Botón Guardar -->
                         <p:commandButton value="Guardar"
-                                         action="#{altaUABeanUI.alta}"
+                                         action="#{UABeanUI.alta}"
                                          update="messages"/>
                         <p:commandButton value="Limpiar campos"
-                                         action="#{altaUABeanUI.limpiar}"
+                                         action="#{UABeanUI.limpiar}"
                                          update="formAltaUA mensajes"/>
 
                         <br/>

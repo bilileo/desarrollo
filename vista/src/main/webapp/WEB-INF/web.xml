@@ -28,6 +28,6 @@
     </session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>GUA-US1.xhtml</welcome-file>
+    <welcome-file>GUA-US2.xhtml</welcome-file>
   </welcome-file-list>
 </web-app>
