@@ -11,6 +11,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.helper.UnidadaprendizajeHelper;
+import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
 
@@ -46,18 +47,34 @@ public class UABeanUI implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Verifica que las horas esten en un rango de 1 a 4 hrs...",null));
+                            "Error ","Verifica que las horas esten en un rango de 1 a 4 hrs..."));
             e.printStackTrace();
         }
     }
 
     public void baja(){
         try{
-            if(uaHelper.tieneProfeAsignado(uaID)){
-
+            if(!uaHelper.tieneProfeAsignado(uaID)){
+                //No tiene profesores
+                bajaDirecta();
+            } else{
+                // Si tiene profesores
+                PrimeFaces.current().executeScript("PF('confirmProfe').show()");
             }
+        }catch (Exception e){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Error","No se puede eliminar la UA: " + e.getMessage()));
         }
     }
+
+    public void bajaDirecta() throws Exception {
+            uaHelper.eLiminarUA(uaID);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "Exito","UA eliminada correctamente."));
+    }
+
     // getters y setters de nombre, hrsClase, hrsTaller, hrsLab obligatorios!!!
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
