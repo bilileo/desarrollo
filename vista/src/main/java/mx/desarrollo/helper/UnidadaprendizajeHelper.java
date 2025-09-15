@@ -12,7 +12,7 @@ import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
 
-public class AltaUnidadaprendizajeHelper implements Serializable {
+public class UnidadaprendizajeHelper implements Serializable {
 
 
     /**
@@ -22,5 +22,13 @@ public class AltaUnidadaprendizajeHelper implements Serializable {
 
     public void AltaUA(Unidadaprendizaje UA){
         ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().guardarUA(UA);
+    }
+
+    public boolean tieneProfeAsignado(int uaID){
+        return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().tieneProfeAsignado(uaID);
+    }
+
+    public void ELiminarUA(int uaID) throws Exception{
+        ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().eliminarUA(uaID);
     }
 }

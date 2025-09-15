@@ -10,22 +10,23 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import mx.desarollo.entity.Unidadaprendizaje;
-import mx.desarrollo.helper.AltaUnidadaprendizajeHelper;
+import mx.desarrollo.helper.UnidadaprendizajeHelper;
 
 import java.io.Serializable;
 
 @Named("altaUABeanUI")
 @SessionScoped
-public class AltaUABeanUI implements Serializable {
+public class UABeanUI implements Serializable {
 
-    private AltaUnidadaprendizajeHelper guardarHelper;
+    private UnidadaprendizajeHelper uaHelper;
     private String nombre;
     private Byte hrsClase;
     private Byte hrsTaller;
     private Byte hrsLab;
+    private int uaID; // para la eliminacion
 
-    public AltaUABeanUI() {
-        guardarHelper = new AltaUnidadaprendizajeHelper();
+    public UABeanUI() {
+        uaHelper = new UnidadaprendizajeHelper();
     }
 
     public void alta() {
@@ -36,7 +37,7 @@ public class AltaUABeanUI implements Serializable {
             ua.setHrsTaller(hrsTaller);
             ua.setHrsLab(hrsLab);
 
-            guardarHelper.AltaUA(ua);
+            uaHelper.AltaUA(ua);
 
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -50,6 +51,13 @@ public class AltaUABeanUI implements Serializable {
         }
     }
 
+    public void baja(){
+        try{
+            if(uaHelper.tieneProfeAsignado(uaID)){
+
+            }
+        }
+    }
     // getters y setters de nombre, hrsClase, hrsTaller, hrsLab obligatorios!!!
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
