@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/style.css" rel="stylesheet" type="text/css"/>
+</h:head>
+
+<h:body>
+    <div class="row">
+        <h:form id="formAltaProfe">
+
+            <!-- Mensajes de validación -->
+            <p:messages id="messages" showDetail="true" closable="true"/>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="Titulo">
+                        <p:button value="Regresar" outcome="ALP-US1.xhtml" />
+                        <h2>Alta de Profesor</h2>
+                    </div>
+                    <div class="Enlaces">
+                        <p:button value="Cerrar sesión" outcome="ALP-US1.xhtml" />
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <!-- Nombre -->
+                    <div class="form-group">
+                        <p:inputText class="form-control"
+                                     placeholder="Nombre"
+                                     value="#{altaProfeBeanUI.nombre}"
+                                     required="true"
+                                     requiredMessage="El campo Nombre es obligatorio"
+                                     validatorMessage="Verifica el nombre"
+                                     minlength="2"/>
+                    </div>
+
+                    <!-- Apellido Paterno -->
+                    <div class="form-group">
+                        <p:inputText class="form-control"
+                                     placeholder="Apellido Paterno"
+                                     value="#{altaProfeBeanUI.apellidoP}"
+                                     required="true"
+                                     requiredMessage="El campo Apellido Paterno es obligatorio"
+                                     validatorMessage="Verifica el apellido Paterno"
+                                     minlength="2"/>
+                    </div>
+
+                    <!-- Apellido Materno -->
+                    <div class="form-group">
+                        <p:inputText class="form-control"
+                                     placeholder="Apellido Materno"
+                                     value="#{altaProfeBeanUI.apellidoM}"
+                                     required="true"
+                                     requiredMessage="El campo Apellido Materno es obligatorio"
+                                     validatorMessage="Verifica el apellido Materno"
+                                     minlength="2"/>
+                    </div>
+
+                    <!-- Fecha de nacimiento (solo para validacion más completa de rfc-->
+                    <p:calendar value="#{altaProfeBeanUI.fechaNacimiento}"
+                                pattern="dd/MM/yyyy"
+                                placeholder="Fecha de Nacimiento"
+                                required="true"
+                                yearRange="1924:2010"
+                                showButtonPanel="true"
+                                navigator="true"
+                                requiredMessage="Ingresa fecha de nacimiento."/>
+
+                    <!-- RFC -->
+                    <div class="form-group">
+                        <p:inputText class="form-control"
+                                     placeholder="RFC"
+                                     maxlength="13"
+                                     value="#{altaProfeBeanUI.rfc}"
+                                     validator="#{altaProfeBeanUI.validarRFC}"
+                                     required="true"
+                                     requiredMessage="El campo RFC es obligatorio"/>
+                    </div>
+
+                    <!-- Botones -->
+                    <p:commandButton value="Guardar"
+                                     action="#{altaProfeBeanUI.alta}"
+                                     update="messages"
+                                     styleClass="btn btn-success"/>
+                    <p:commandButton value="Limpiar campos"
+                                     action="#{altaProfeBeanUI.limpiar}"
+                                     update="formAltaProfe messages"
+                                     immediate="true"
+                                     styleClass="btn btn-warning"/>
+                </div>
+            </div>
+        </h:form>
+    </div>
+
+    <footer class="footer">© 2025 SAUAP — Todos los derechos reservados</footer>
+</h:body>
+</html>
