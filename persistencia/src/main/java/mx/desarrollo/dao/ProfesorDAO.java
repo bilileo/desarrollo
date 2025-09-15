@@ -10,7 +10,7 @@ public class ProfesorDAO {
 
     @PersistenceContext(unitName = "desarrolloPU")
     private EntityManager em;
-
+//
     // Metodo para consultar a todos los profesores ordenados por nombre
     public List<Profesor> obtenerProfesores() {
         String jpql = "SELECT p FROM Profesor p ORDER BY p.nombre";
