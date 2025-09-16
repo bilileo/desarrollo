@@ -75,4 +75,12 @@ public class Asignado {
         this.hrsLab = hrsLab;
     }
 
+    public int getTotalHoras() {
+        int total = 0;
+        if (hrsClase != null) total += hrsClase;
+        if (hrsTaller != null) total += hrsTaller;
+        if (hrsLab != null) total += hrsLab;
+        return total;
+    }
+
 }
