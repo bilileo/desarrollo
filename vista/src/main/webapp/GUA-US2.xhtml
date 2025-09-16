@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-image: url("https://angloecuatoriana.com/wp-content/uploads/2019/11/fondo-formulario.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .panel-body {
+            text-align: center;
+        }
+        div.panel-body {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 55%;
+            width: 75%;
+            padding: 25px;
+            margin: auto;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            background-color: white;
+        }
+        .panel-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            background-color: #00723f;
+        }
+        .Titulo {
+            text-shadow: none;
+            text-align: left;
+            padding-left: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;           }
+        .Enlaces {
+            text-shadow: none;
+            text-align: right;
+            padding-right: 30px;
+            color: white;
+        }
+        .footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+        #formConsultaUA .ui-datatable {
+            width: 100%;
+            table-layout: auto; /*it adjust based on content*/
+        }
+        #formConsultaUA .ui-datatable td, #formConsultaUA .ui-datatable th{
+            font-size: 12px;
+            line-height: 1.5em;
+        }
+
+    </style>
+</h:head>
+
+<h:body>
+    <div class="row">
+        <h:form id="formConsultaUA">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="Titulo"><!-- Regresar button to change-->
+                        <p:button value="Regresar" outcome="GUA-US1.xhtml"/> <!-- to go back to the main menu but there's still none so i put it in the alta page -->
+                            <h2>Consulta de Unidades de Aprendizaje</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <p:dataTable id="tablaUA" var="ua" value="#{UABeanUI.listaUA}"
+                             scrollable="true" scrollHeight="300"
+                             style="width: 100%"
+                             emptyMessage=" - No se encontraron registros - ">
+                    <p:column headerText="ID" style="text-align: center">
+                        <h:outputText value="#{ua.id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre" style="text-align: center">
+                        <h:outputText value="#{ua.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Horas Clase" style="text-align: center">
+                        <h:outputText value="#{ua.hrsClase}"/>
+                    </p:column>
+                    <p:column headerText="Horas Taller" style="text-align: center">
+                        <h:outputText value="#{ua.hrsTaller}"/>
+                    </p:column>
+                    <p:column headerText="Horas Laboratorio" style="text-align: center">
+                        <h:outputText value="#{ua.hrsLab}"/>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </h:form>
+    </div>
+    <footer class="footer">© 2025 SAUAP — Todos los derechos reservados</footer>
+</h:body>
+</html>

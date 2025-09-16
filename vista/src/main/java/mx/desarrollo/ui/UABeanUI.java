@@ -7,31 +7,33 @@ package mx.desarrollo.ui;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.validator.FacesValidator;
-import jakarta.faces.validator.Validator;
-import jakarta.faces.validator.ValidatorException;
 import jakarta.inject.Named;
 import mx.desarollo.entity.Unidadaprendizaje;
-import mx.desarrollo.helper.AltaUnidadaprendizajeHelper;
+import mx.desarrollo.helper.UnidadaprendizajeHelper;
 
 import java.io.Serializable;
+import java.util.List;
 
-@Named("altaUABeanUI")
+@Named("UABeanUI")
 @SessionScoped
-public class AltaUABeanUI implements Serializable {
+public class UABeanUI implements Serializable {
 
-    private AltaUnidadaprendizajeHelper guardarHelper;
+    private UnidadaprendizajeHelper guardarHelper;
     private String nombre;
     private Byte hrsClase;
     private Byte hrsTaller;
     private Byte hrsLab;
     Unidadaprendizaje ua;
 
-    public AltaUABeanUI() {
-        guardarHelper = new AltaUnidadaprendizajeHelper();
+    private UnidadaprendizajeHelper consultaHelper;
+    private List<Unidadaprendizaje> listaUA;
+
+    public UABeanUI() {
+        guardarHelper = new UnidadaprendizajeHelper();
          ua = new Unidadaprendizaje();
+        consultaHelper = new UnidadaprendizajeHelper();
+        cargarUA();
     }
 
     public String limpiar() {
@@ -57,10 +59,15 @@ public class AltaUABeanUI implements Serializable {
 
             guardarHelper.AltaUA(ua);
 
+            cargarUA();
+
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Registro Exitoso",
                             "UA Registrada"));
+
+            limpiar();
+
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -80,6 +87,17 @@ public class AltaUABeanUI implements Serializable {
 
     public Byte getHrsLab() { return hrsLab; }
     public void setHrsLab(Byte hrsLab) { this.hrsLab = hrsLab; }
+
+    /*public void consultaUABeanUI() {
+        consultaHelper = new UnidadaprendizajeHelper();
+        cargarUA();
+    }*/
+    private void cargarUA() {
+        listaUA = consultaHelper.consultarTodasUA();
+    }
+    public List<Unidadaprendizaje> getListaUA() {
+        return listaUA;
+    }
 
 }
 

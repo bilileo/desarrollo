@@ -5,14 +5,13 @@
  */
 package mx.desarrollo.helper;
 
-
-
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class AltaUnidadaprendizajeHelper implements Serializable {
+public class UnidadaprendizajeHelper implements Serializable {
 
 
     /**
@@ -22,5 +21,9 @@ public class AltaUnidadaprendizajeHelper implements Serializable {
 
     public void AltaUA(Unidadaprendizaje UA){
         ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().guardarUA(UA);
+    }
+
+    public List<Unidadaprendizaje> consultarTodasUA() {
+        return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().consultarTodasUA();
     }
 }
