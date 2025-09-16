@@ -83,13 +83,7 @@ div.panel-body {
 
 /*CSS CONSULTAS*/
 
-/* H2 más pequeño */
-.Titulo h2 {
-    font-size: 20px;   /* más chico que el original */
-    color: white;
-    margin: 0;
-    font-weight: bold;
-}
+
 /* Contenedor de la tabla */
 .custom-table {
     margin: auto;

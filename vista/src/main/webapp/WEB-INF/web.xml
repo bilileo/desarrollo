@@ -31,6 +31,6 @@
   </session-config>
   <welcome-file-list>
       <!--cambie el file por el de consulta de profes-->
-      <welcome-file>ALP-US1.xhtml</welcome-file>
+      <welcome-file>GAP-US2.xhtml</welcome-file>
   </welcome-file-list>
 </web-app>

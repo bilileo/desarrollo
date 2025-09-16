@@ -84,8 +84,6 @@ public class ProfeBeanUI implements Serializable {
                             "Profesor Registrado"));
 
 
-            limpiar(); // reinicia el formulario
-
 
             // recargar lista
             profesores = helper.obtenerProfesoresConUA();
