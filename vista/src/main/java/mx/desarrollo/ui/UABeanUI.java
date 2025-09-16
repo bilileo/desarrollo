@@ -25,14 +25,16 @@ public class UABeanUI implements Serializable {
     private Byte hrsTaller;
     private Byte hrsLab;
     Unidadaprendizaje ua;
+    Unidadaprendizaje unidadaprendizaje;
 
     private UnidadaprendizajeHelper consultaHelper;
     private List<Unidadaprendizaje> listaUA;
 
     public UABeanUI() {
         guardarHelper = new UnidadaprendizajeHelper();
-         ua = new Unidadaprendizaje();
+         unidadaprendizaje = new Unidadaprendizaje();
         consultaHelper = new UnidadaprendizajeHelper();
+        ua = new Unidadaprendizaje();
         cargarUA();
     }
 
@@ -43,7 +45,7 @@ public class UABeanUI implements Serializable {
             this.hrsTaller = null;
             this.hrsLab = null;
 
-            this.ua = new Unidadaprendizaje();
+            this.unidadaprendizaje = new Unidadaprendizaje();
         } catch (Exception e) {
             return null;
         }
@@ -52,12 +54,12 @@ public class UABeanUI implements Serializable {
 
     public void alta() {
         try {
-            ua.setNombre(nombre);
-            ua.setHrsClase(hrsClase);
-            ua.setHrsTaller(hrsTaller);
-            ua.setHrsLab(hrsLab);
+            unidadaprendizaje.setNombre(nombre);
+            unidadaprendizaje.setHrsClase(hrsClase);
+            unidadaprendizaje.setHrsTaller(hrsTaller);
+            unidadaprendizaje.setHrsLab(hrsLab);
 
-            guardarHelper.AltaUA(ua);
+            guardarHelper.AltaUA(unidadaprendizaje);
 
             cargarUA();
 
@@ -88,6 +90,13 @@ public class UABeanUI implements Serializable {
     public Byte getHrsLab() { return hrsLab; }
     public void setHrsLab(Byte hrsLab) { this.hrsLab = hrsLab; }
 
+    public Unidadaprendizaje getUnidadaprendizaje() {
+        return unidadaprendizaje;
+    }
+
+    public void setUnidadaprendizaje(Unidadaprendizaje unidadaprendizaje) {
+        this.unidadaprendizaje = unidadaprendizaje;
+    }
     /*public void consultaUABeanUI() {
         consultaHelper = new UnidadaprendizajeHelper();
         cargarUA();
