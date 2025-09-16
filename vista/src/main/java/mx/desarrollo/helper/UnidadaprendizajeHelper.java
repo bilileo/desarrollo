@@ -31,4 +31,8 @@ public class UnidadaprendizajeHelper implements Serializable {
     public void eLiminarUA(int uaID) throws Exception{
         ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().eliminarUA(uaID);
     }
+
+    public boolean existeUA(int uaID) throws Exception {
+        return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().existeUA(uaID);
+    }
 }

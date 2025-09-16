@@ -15,7 +15,7 @@ import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
 
-@Named("uABeanUI")
+@Named("UABeanUI")
 @SessionScoped
 public class UABeanUI implements Serializable {
 
@@ -52,39 +52,58 @@ public class UABeanUI implements Serializable {
         }
     }
 
-    // si el dato ingresado fue válido
-    public void preBaja(){
-        PrimeFaces.current().executeScript("PF('confirmEliminar').show()");
-    }
-
-    public void baja(){
+    // primera confirmación para eliminar
+    public void validarYConfirmar(){
         try{
-            if(!uaHelper.tieneProfeAsignado(uaID)){
-                //No tiene profesores
-                bajaDirecta();
-            } else{
-                // Si tiene profesores
-                PrimeFaces.current().executeScript("PF('confirmProfe').show()");
+            // si no existe
+            if(!uaHelper.existeUA(uaID)){
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                "No existe.","La UA con id: " + uaID + " no se encontró."));
+                return;
             }
-        }catch (Exception e){
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Error","No se puede eliminar la UA: " + e.getMessage()));
+            // si existe pedir confirmacion
+            PrimeFaces.current().executeScript("PF('confirmar').show()");
+        } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Error.",e.getMessage()));
         }
     }
 
-    public void bajaDirecta() throws Exception {
-        try {
+    // segunda confirmacion si la ua tiene profesores
+    public void confirmarEliminacion(){
+        try{
+            // si la ua existe
+            if(!uaHelper.tieneProfeAsignado(uaID)){
+                // si no tiene profes eliminar directamente
+                eliminarUA();
+            } else {
+                // si tiene profesores volver a preguntar
+                PrimeFaces.current().executeScript("PF('confirmProfe').show()");
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Error",e.getMessage()));
+        }
+    }
+
+    // eliminacion directa
+    public void eliminarUA(){
+        try{
             uaHelper.eLiminarUA(uaID);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
-                            "Exito", "UA eliminada correctamente."));
-        } catch(Exception w){
+                            "Éxito","UA eliminada correctamente."));
+            uaID = 0;
+            PrimeFaces.current().ajax().update("formBajaUA:uaIDInput");
+        } catch (Exception e){
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Error ","No se pudo eliminar la UA: " + w.getMessage()));
-            w.printStackTrace();
+                            "Error","No se pudo eliminar la UA: " + e.getMessage()));
         }
+
     }
 
     // getters y setters de nombre, hrsClase, hrsTaller, hrsLab obligatorios!!!
