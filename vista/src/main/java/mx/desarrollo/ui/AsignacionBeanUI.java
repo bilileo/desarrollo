@@ -64,10 +64,11 @@ public class AsignacionBeanUI implements Serializable {
                                 "Posiblemente hay un traslape en el horario del profesor existente"));
                         break;
                     case 4:
+                        int h = asignarHelper.TotalHorasRequeridas(idUA);
                         FacesContext.getCurrentInstance().addMessage(null,
                                 new FacesMessage(FacesMessage.SEVERITY_ERROR,
                                         "Error de asignación",
-                                        "Las horas no coinciden con la Unidad de Aprendizaje al asignar"));
+                                        "Las horas no coinciden con la Unidad de Aprendizaje al asignar, son " + Integer.toString(h) + " horas requeridas"));
                         break;
                     case 5:
                         FacesContext.getCurrentInstance().addMessage(null,

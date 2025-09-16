@@ -12,4 +12,8 @@ public class FacadeAsignacionUnidadProfesor {
     public int asignar(Integer idProfesor, Integer idUA, boolean[] lunes, boolean[] martes, boolean[] miercoles, boolean[] jueves, boolean[] viernes){
         return delegateAsignacion.asignar(idProfesor, idUA, lunes, martes, miercoles, jueves, viernes);
     }
+
+    public int TotalHorasRequeridas(Integer idUA){
+        return delegateAsignacion.TotalHorasRequeridas(idUA);
+    }
 }

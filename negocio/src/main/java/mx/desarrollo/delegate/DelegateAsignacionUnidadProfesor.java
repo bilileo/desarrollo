@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class DelegateAsignacionUnidadProfesor {
-
     public static byte[] toByteArray(boolean[] booleanArray) {
         if (booleanArray == null) {
             return null;
@@ -26,6 +25,14 @@ public class DelegateAsignacionUnidadProfesor {
             }
         }
         return byteArray;
+    }
+
+    public int TotalHorasRequeridas(Integer idUA) {
+        Optional<Unidadaprendizaje> info = ServiceLocator.getInstanceUnidadAprendizajeDAO().find(idUA);
+        if (info.isPresent()) {
+            return (int)info.get().getHrsClase() + (int)info.get().getHrsLab() + (int)info.get().getHrsTaller();
+        }
+        return 0;
     }
 
     public static boolean traslape(byte[] arrayProfesor, byte[] arrayNuevo){
