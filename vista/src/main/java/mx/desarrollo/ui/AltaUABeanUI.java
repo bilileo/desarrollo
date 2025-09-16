@@ -7,14 +7,10 @@ package mx.desarrollo.ui;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.validator.FacesValidator;
-import jakarta.faces.validator.Validator;
-import jakarta.faces.validator.ValidatorException;
 import jakarta.inject.Named;
 import mx.desarollo.entity.Unidadaprendizaje;
-import mx.desarrollo.helper.AltaUnidadaprendizajeHelper;
+import mx.desarrollo.helper.UnidadaprendizajeHelper;
 
 import java.io.Serializable;
 
@@ -22,7 +18,7 @@ import java.io.Serializable;
 @SessionScoped
 public class AltaUABeanUI implements Serializable {
 
-    private AltaUnidadaprendizajeHelper guardarHelper;
+    private UnidadaprendizajeHelper guardarHelper;
     private String nombre;
     private Byte hrsClase;
     private Byte hrsTaller;
@@ -30,7 +26,7 @@ public class AltaUABeanUI implements Serializable {
     Unidadaprendizaje ua;
 
     public AltaUABeanUI() {
-        guardarHelper = new AltaUnidadaprendizajeHelper();
+        guardarHelper = new UnidadaprendizajeHelper();
          ua = new Unidadaprendizaje();
     }
 

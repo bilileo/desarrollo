@@ -11,8 +11,9 @@ import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class AltaUnidadaprendizajeHelper implements Serializable {
+public class UnidadaprendizajeHelper implements Serializable {
 
 
     /**
@@ -23,4 +24,14 @@ public class AltaUnidadaprendizajeHelper implements Serializable {
     public void AltaUA(Unidadaprendizaje UA){
         ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().guardarUA(UA);
     }
+
+    public void ModificarUA(Unidadaprendizaje UA){
+        ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().modificarUA(UA);
+    }
+
+    public ArrayList<Unidadaprendizaje> listaUnidades(){
+        return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().obtenerUAS();
+    }
+
+
 }

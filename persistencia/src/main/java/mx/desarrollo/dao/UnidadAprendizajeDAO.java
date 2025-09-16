@@ -5,6 +5,7 @@ import jakarta.persistence.EntityTransaction;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarollo.persistence.AbstractDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
@@ -33,6 +34,34 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
             }
             throw e;
         }
+    }
+
+    public void modificar(Unidadaprendizaje unidad) {
+        EntityTransaction tx = entityManager.getTransaction();
+        try {
+            tx.begin();
+            entityManager.createNativeQuery(
+                            "UPDATE unidadaprendizaje SET Nombre = ?, HrsClase = ?, HrsTaller = ?, HrsLab = ? WHERE id = ?")
+                    .setParameter(1, unidad.getNombre())
+                    .setParameter(2, unidad.getHrsClase())
+                    .setParameter(3, unidad.getHrsTaller())
+                    .setParameter(4, unidad.getHrsLab())
+                    .setParameter(5, unidad.getId())
+                    .executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw e;
+        }
+    }
+
+    public ArrayList<Unidadaprendizaje> obtenerTodos() {
+        List<Unidadaprendizaje> lista = entityManager
+                .createQuery("SELECT ua FROM Unidadaprendizaje ua", Unidadaprendizaje.class)
+                .getResultList();
+        return new ArrayList<>(lista); // convierte a ArrayList
     }
 
     @Override

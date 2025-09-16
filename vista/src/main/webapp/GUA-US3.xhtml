@@ -69,14 +69,20 @@
                 padding: 10px;
                 margin-top: auto;
             }
+            .ComboBox {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
         </style>
     </h:head>
     <h:body>
         <div class="row">
-            <h:form id="formAltaUA">
 
-                <!-- mensajes de validación / confirmación -->
+            <div class="panel-comboBox">
+
+            <h:form id="formModificarUA">
                 <p:messages id="messages" showDetail="true" closable="true"/>
 
                 <div class="panel">
@@ -86,7 +92,7 @@
                             <h2>Alta de Unidad de Aprendizaje</h2>
                         </div>
                         <div class = "Enlaces">
-                            <p:button value="Cerrar sesión" outcome="GUA-US3.xhtml" />
+                            <p:button value="Cerrar sesión" outcome="GUA-US1.xhtml" />
                         </div>
                     </div>
 
@@ -95,7 +101,7 @@
                         <div class="form-group">
                             <p:inputText class="form-control"
                                          placeholder="Nombre de la UA"
-                                         value="#{altaUABeanUI.nombre}"
+                                         value="#{modificarUABeanUI.unidadaprendizaje.nombre}"
                                          required="true"
                                          requiredMessage="El campo Nombre es obligatorio"/>
                         </div>
@@ -105,7 +111,7 @@
                             <p:inputMask class="form-control"
                                          mask="9"
                                          placeholder="Horas Clase"
-                                         value="#{altaUABeanUI.hrsClase}"/>
+                                         value="#{modificarUABeanUI.unidadaprendizaje.hrsClase}"/>
                         </div>
 
                         <!-- Campo Horas Taller -->
@@ -113,7 +119,7 @@
                             <p:inputMask class="form-control"
                                          mask="9"
                                          placeholder="Horas Taller"
-                                         value="#{altaUABeanUI.hrsTaller}"/>
+                                         value="#{modificarUABeanUI.unidadaprendizaje.hrsTaller}"/>
                         </div>
 
                         <!-- Campo Horas Lab -->
@@ -122,21 +128,41 @@
                                          class="form-control"
                                          mask="9"
                                          placeholder="Horas Laboratorio"
-                                         value="#{altaUABeanUI.hrsLab}" />
+                                         value="#{modificarUABeanUI.unidadaprendizaje.hrsLab}" />
                         </div>
 
-                        <!-- Botón Guardar -->
-                        <p:commandButton value="Guardar"
-                                         action="#{altaUABeanUI.alta}"
-                                         update="messages"/>
-                        <p:commandButton value="Limpiar campos"
-                                         action="#{altaUABeanUI.limpiar}"
-                                         update="formAltaUA mensajes"/>
+                        <p:commandButton value="Modificar"
+                                         onclick="PF('confirmDialog').show();return false;" />
+
+                        <p:confirmDialog widgetVar="confirmDialog" header="Confirmación"
+                                         message="¿Desea modificar la Unidad de aprendizaje?" icon="pi pi-exclamation-triangle">
+                            <p:commandButton value="Sí"
+                                             actionListener="#{modificarUABeanUI.modificarUA}"
+                                             oncomplete="PF('confirmDialog').hide()"
+                                             update="comboBoxUA messages"/>
+                            <p:commandButton value="No"
+                                             onclick="PF('confirmDialog').hide();return false;" type="button"/>
+                        </p:confirmDialog>
 
                         <br/>
                     </div>
                 </div>
             </h:form>
+        </div>
+
+        <div class="ComboBox">
+            <h:form id="comboBoxUA">
+                <p:selectOneMenu value="#{modificarUABeanUI.nombreSeleccionado}">
+                    <f:selectItem itemLabel="Seleccione una unidad" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{modificarUABeanUI.unidades}" var="u" itemLabel="#{u.nombre}" itemValue="#{u.nombre}" />
+                    <p:ajax listener="#{modificarUABeanUI.llenarCamposUA}" update=":formModificarUA"/>
+                </p:selectOneMenu>
+                <p:commandButton value="Refrescar"
+                                 action="#{modificarUABeanUI.init()}"
+                                 update="comboBoxUA"/>
+            </h:form>
+        </div>
+
         </div>
         <footer class="footer">© 2025 SAUAP — Todos los derechos reservados</footer>
     </h:body>
