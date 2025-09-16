@@ -39,12 +39,18 @@
                         </p:column>
 
                         <p:column headerText="Materia asignada">
-                            <ul>
-                                <ui:repeat value="#{p.asignados}" var="a">
-                                    <li>#{a.idUa.nombre}</li>
-                                </ui:repeat>
-                            </ul>
+                            <h:panelGroup rendered="#{not empty p.asignados}">
+                                <ul>
+                                    <ui:repeat value="#{p.asignados}" var="a">
+                                        <li>#{a.idUa.nombre}</li>
+                                    </ui:repeat>
+                                </ul>
+                            </h:panelGroup>
+
+                            <!-- Mensaje si no hay materias -->
+                            <h:outputText value="Sin materias asignadas" rendered="#{empty p.asignados}" style="color: gray; font-style: italic;" />
                         </p:column>
+
 
                     </p:dataTable>
 
