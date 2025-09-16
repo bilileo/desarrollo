@@ -36,6 +36,67 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
         }
     }
 
+    public void eliminarUA(int uaID){
+        EntityTransaction tx = entityManager.getTransaction();
+        try{
+            tx.begin();
+            //Des-asignar de los profesores
+            entityManager.createNativeQuery("DELETE FROM asignado WHERE Id_ua = ?")
+                    .setParameter(1,uaID)
+                    .executeUpdate();
+
+            // eliminar la ua
+            entityManager.createNativeQuery("DELETE FROM unidadaprendizaje WHERE id = ?")
+                    .setParameter(1,uaID)
+                    .executeUpdate();
+            tx.commit();
+        } catch (Exception e){
+            if(tx.isActive()){
+                tx.rollback();
+            }
+            throw e;
+        }
+    }
+
+    // validar si tiene profesores asignados
+    public boolean tieneProfesAsignados(int uaID){
+        EntityTransaction tx = entityManager.getTransaction();
+        try{
+            tx.begin();
+            Long count = (Long) entityManager.createNativeQuery(
+                            "SELECT COUNT(*) FROM asignado WHERE Id_ua = ?")
+                    .setParameter(1,uaID)
+                    .getSingleResult();
+            tx.commit();
+            return count > 0;
+        } catch(Exception e){
+            if(tx.isActive()){
+                tx.rollback();
+            }
+            throw e;
+        }
+    }
+
+    // validar si la ua existe en la bd
+    public boolean existeUA(int uaID){
+        EntityTransaction tx = entityManager.getTransaction();
+        try{
+            tx.begin();
+            Long count = (Long) entityManager.createQuery(
+                            "SELECT COUNT(u) FROM Unidadaprendizaje u WHERE u.id = :id")
+                    .setParameter("id",uaID)
+                    .getSingleResult();
+            tx.commit();
+            return count>0;
+
+        } catch(Exception e){
+            if(tx.isActive()){
+                tx.rollback();
+            }
+            throw e;
+        }
+    }
+
     public void modificar(Unidadaprendizaje unidad) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
