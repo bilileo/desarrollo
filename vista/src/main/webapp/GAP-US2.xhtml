@@ -22,7 +22,7 @@
                 </div>
 
                 <!-- Contenedor PARA TABLA -->
-                    <p:dataTable value="#{profeBeanUI.profesores}" var="p"
+                    <p:dataTable value="#{profeBeanUI.profesores}" var="p" <!-- p = profesor -->
                                  scrollable="true" scrollHeight="400"
                                  styleClass="custom-table">
 
@@ -39,7 +39,7 @@
                         </p:column>
 
                         <p:column headerText="Materia asignada">
-                            <h:panelGroup rendered="#{not empty p.asignados}">
+                            <h:panelGroup rendered="#{not empty p.asignados}"> <!-- rendered es condicional -->
                                 <ul>
                                     <ui:repeat value="#{p.asignados}" var="a">
                                         <li>#{a.idUa.nombre}</li>
