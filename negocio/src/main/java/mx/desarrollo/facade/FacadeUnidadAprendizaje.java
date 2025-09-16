@@ -5,6 +5,8 @@ import mx.desarollo.entity.Unidadaprendizaje;
 
 import java.util.List;
 
+import java.util.ArrayList;
+
 public class FacadeUnidadAprendizaje {
 
     private final DelegateUnidadAprendizaje delegateUnidadAprendizaje;
@@ -20,4 +22,12 @@ public class FacadeUnidadAprendizaje {
     public List<Unidadaprendizaje> consultarTodasUA() {
         return delegateUnidadAprendizaje.findAllUA();
     }
+    public void modificarUA(Unidadaprendizaje UA){
+        delegateUnidadAprendizaje.modificar(UA);
+    }
+
+    public ArrayList<Unidadaprendizaje> obtenerUAS(){
+        return delegateUnidadAprendizaje.getListaUnidades();
+    }
+
 }

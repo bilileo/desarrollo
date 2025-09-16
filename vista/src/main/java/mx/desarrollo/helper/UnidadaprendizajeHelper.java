@@ -10,6 +10,7 @@ import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.ArrayList;
 
 public class UnidadaprendizajeHelper implements Serializable {
 
@@ -26,4 +27,14 @@ public class UnidadaprendizajeHelper implements Serializable {
     public List<Unidadaprendizaje> consultarTodasUA() {
         return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().consultarTodasUA();
     }
+
+    public void ModificarUA(Unidadaprendizaje UA){
+        ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().modificarUA(UA);
+    }
+
+    public ArrayList<Unidadaprendizaje> listaUnidades(){
+        return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().obtenerUAS();
+    }
+
+
 }
