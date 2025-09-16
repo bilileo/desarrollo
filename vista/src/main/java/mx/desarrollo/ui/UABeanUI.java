@@ -51,7 +51,6 @@ public class UABeanUI implements Serializable {
             return null;
         }
         return null;
-        uaHelper = new UnidadaprendizajeHelper();
     }
 
     public void alta() {
@@ -75,7 +74,6 @@ public class UABeanUI implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Registro Invalido","Verifica que las Hrs esten en un rango de 0 a 4 hrs..."));
                             "Error ","Verifica que las horas esten en un rango de 1 a 4 hrs..."));
             e.printStackTrace();
         }
@@ -165,8 +163,6 @@ public class UABeanUI implements Serializable {
     public List<Unidadaprendizaje> getListaUA() {
         return listaUA;
     }
-
-}
 
     public int getUaID() {return uaID;}
     public void setUaID(int uaID) {this.uaID = uaID;}
