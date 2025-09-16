@@ -4,6 +4,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import mx.desarollo.entity.Asignado;
 import mx.desarrollo.persistence.AbstractDAO;
+import mx.desarollo.entity.AsignadoId;
+
+import java.util.List;
 
 public class AsignadoDAO extends AbstractDAO<Asignado> {
     private final EntityManager entityManager;
@@ -18,7 +21,7 @@ public class AsignadoDAO extends AbstractDAO<Asignado> {
         try {
             tx.begin();
             entityManager.createNativeQuery(
-                            "INSERT INTO asignado (Id_profesor, Id_ua,HrsClase,HrsTaller,HrsLab,Lunes,Martes,Miercoles,Jueves,Viernes) VALUES (?,?,?,?,?,?,?,?,?,?)")
+            "INSERT INTO asignado (Id_profesor, Id_ua,HrsClase,HrsTaller,HrsLab,Lunes,Martes,Miercoles,Jueves,Viernes) VALUES (?,?,?,?,?,?,?,?,?,?)")
                     .setParameter(1, asignacion.getId().getIdProfesor())
                     .setParameter(2, asignacion.getId().getIdUa())
                     .setParameter(3, asignacion.getHrsClase())
@@ -35,6 +38,22 @@ public class AsignadoDAO extends AbstractDAO<Asignado> {
             if (tx.isActive()) {
                 tx.rollback();
             }
+            throw e;
+        }
+    }
+
+    public void eliminar(AsignadoId id) {
+        EntityTransaction tx = entityManager.getTransaction();
+        try {
+            tx.begin();
+            Asignado asignado = entityManager.find(Asignado.class, id);
+            if (asignado == null) {
+                throw new IllegalArgumentException(" - La asignacion no existe - ");
+            }
+            entityManager.remove(asignado);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
             throw e;
         }
     }

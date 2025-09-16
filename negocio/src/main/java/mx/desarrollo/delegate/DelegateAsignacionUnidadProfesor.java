@@ -133,4 +133,11 @@ public class DelegateAsignacionUnidadProfesor {
         ServiceLocator.getInstanceAsignadoDAO().asignar(asignado);
         return 0;
     }
+
+    public void eliminar(Integer idProfesor, Integer idUA) {
+        AsignadoId asignadoId = new AsignadoId();
+        asignadoId.setIdProfesor(idProfesor);
+        asignadoId.setIdUa(idUA);
+        ServiceLocator.getInstanceAsignadoDAO().eliminar(asignadoId);
+    }
 }

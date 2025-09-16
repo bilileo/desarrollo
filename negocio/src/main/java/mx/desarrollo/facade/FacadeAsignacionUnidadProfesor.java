@@ -16,4 +16,6 @@ public class FacadeAsignacionUnidadProfesor {
     public int TotalHorasRequeridas(Integer idUA){
         return delegateAsignacion.TotalHorasRequeridas(idUA);
     }
+
+    public void eliminar(Integer idProfesor, Integer idUA) { delegateAsignacion.eliminar(idProfesor, idUA); }
 }
