@@ -82,7 +82,7 @@
                 <div class="panel">
                     <div class="panel-header">
                         <div class = "Titulo">
-                            <p:button value="Regresar" outcome="GUA-US2.xhtml" />
+                            <p:button value="Regresar" outcome="GUA-US2.xhtml" update = ":formConsultaUA:tablaUA :formAltaUa:messages" />
                             <h2>Alta de Unidad de Aprendizaje</h2>
                         </div>
                         <div class = "Enlaces">
@@ -128,7 +128,7 @@
                         <!-- Botón Guardar -->
                         <p:commandButton value="Guardar"
                                          action="#{UABeanUI.alta}"
-                                         update="messages"/>
+                                         update="messages :formConsultaUA:tablaUA"/>
                         <p:commandButton value="Limpiar campos"
                                          action="#{UABeanUI.limpiar}"
                                          update="formAltaUA mensajes"/>

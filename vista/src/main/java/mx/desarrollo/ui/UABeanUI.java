@@ -59,10 +59,15 @@ public class UABeanUI implements Serializable {
 
             guardarHelper.AltaUA(ua);
 
+            cargarUA();
+
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Registro Exitoso",
                             "UA Registrada"));
+
+            limpiar();
+
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
