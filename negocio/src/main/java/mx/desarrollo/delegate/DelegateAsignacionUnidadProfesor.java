@@ -2,6 +2,7 @@ package mx.desarrollo.delegate;
 
 import mx.desarollo.entity.Asignado;
 import mx.desarollo.entity.AsignadoId;
+import mx.desarollo.entity.Profesor;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.integration.ServiceLocator;
 
@@ -39,9 +40,42 @@ public class DelegateAsignacionUnidadProfesor {
         return false;
     }
 
-    public boolean asignar(Integer idProfesor, Integer idUA, boolean[] lunes, boolean[] martes, boolean[] miercoles, boolean[] jueves, boolean[] viernes){
+    public static int booleanTrue(boolean[] booleans){
+        int total = 0;
+        for (int i = 0; i < booleans.length; i++) {
+            if(booleans[i] == true){
+                total++;
+            }
+        }
+        return total;
+    }
+
+    public int asignar(Integer idProfesor, Integer idUA, boolean[] lunes, boolean[] martes, boolean[] miercoles, boolean[] jueves, boolean[] viernes){
         Optional<Unidadaprendizaje> info = ServiceLocator.getInstanceUnidadAprendizajeDAO().find(idUA);
+        Optional<Profesor> profe = ServiceLocator.getInstanceProfesorDAO().find(idProfesor);
         List<Asignado> list = ServiceLocator.getInstanceAsignadoDAO().findAll();
+
+        if(info.isEmpty()){
+            return 1; //no existe UA
+        }
+
+        if(profe.isEmpty()){
+            return 2; //no existe profesor
+        }
+
+        for (Asignado unidad : list) {
+            AsignadoId id = unidad.getId();
+            if(id.getIdProfesor().equals(idProfesor) && id.getIdUa().equals(idUA)){
+                return 5;
+            }
+        }
+
+        int total = (int)info.get().getHrsClase() + (int)info.get().getHrsLab() + (int)info.get().getHrsTaller();
+        int totalHoras = booleanTrue(lunes) + booleanTrue(martes) + booleanTrue(miercoles) + booleanTrue(jueves) + booleanTrue(viernes);
+
+        if(total != totalHoras){
+            return 4;
+        }
 
         boolean success = true;
         for (Asignado unidad : list) {
@@ -69,6 +103,10 @@ public class DelegateAsignacionUnidadProfesor {
             }
         }
 
+        if(!success){
+            return 3; //Traslape de horario
+        }
+
         Asignado asignado = new Asignado();
         AsignadoId asignadoId = new AsignadoId();
         asignadoId.setIdProfesor(idProfesor);
@@ -84,9 +122,8 @@ public class DelegateAsignacionUnidadProfesor {
         asignado.setMiercoles(toByteArray(miercoles));
         asignado.setJueves(toByteArray(jueves));
         asignado.setViernes(toByteArray(viernes));
-        if(success) {
-            ServiceLocator.getInstanceAsignadoDAO().asignar(asignado);
-        }
-        return success;
+
+        ServiceLocator.getInstanceAsignadoDAO().asignar(asignado);
+        return 0;
     }
 }
