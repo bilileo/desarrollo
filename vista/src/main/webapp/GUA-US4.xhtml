@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/style.css" rel="stylesheet" type="text/css"/>
+</h:head>
+
+
+<h:body>
+    <h:form id="formBajaUA">
+
+
+        <p:messages id="messages" showDetail="true" closable="true"/>
+
+        <div class="panel">
+            <div class="panel-header">
+                <div class="Titulo">
+                    <p:button value="Regresar" outcome="GUA-US4.xhtml" />
+                    <h2>Eliminar UA</h2>
+                </div>
+                <div class="Enlaces">
+                    <p:button value="Cerrar sesión" outcome="GUA-US1.xhtml" />
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <!-- ID de UA -->
+                <div class="form-group">
+                    <p:inputText id="uaIDInput" class="form-control"
+                                 placeholder="ID de la Unidad"
+                                 value="#{UABeanUI.uaID}"
+                                 required="true"
+                                 requiredMessage="El ID es obligatorio"
+                                 validatorMessage="Debe ser un número entero válido"
+                                 convertMessage="Favor de ingresar un número entero.">
+                        <f:validateLongRange />
+                    </p:inputText>
+                </div>
+
+                <!-- Botones -->
+                <p:commandButton value="Eliminar"
+                                 actionListener="#{UABeanUI.validarYConfirmar}"
+                                 update=":formBajaUA:messages"
+                                 styleClass="btn btn-danger"/>
+                <p:commandButton value="Cancelar"
+                                 type="reset"
+                                 styleClass="btn btn-warning"/>
+            </div>
+        </div>
+
+        <!-- Primera confirmación -->
+        <p:confirmDialog widgetVar="confirmar"
+                         message="Deseas eliminar esta UA?"
+                         header="Advertencia" severity="warn">
+            <p:commandButton value="Aceptar"
+                             actionListener="#{UABeanUI.confirmarEliminacion}"
+                             update=":formBajaUA:messages"
+                             oncomplete="PF('confirmar').hide()"/>
+            <p:commandButton value="Cancelar"
+                             onclick="PF('confirmar').hide()"
+                             type="button"/>
+
+        </p:confirmDialog>
+
+        <!-- Confirmación si tiene profesores -->
+        <p:confirmDialog widgetVar="confirmProfe"
+                         message="Esta UA tiene profesores asignados, ¿seguro que deseas eliminarla?"
+                         header="Advertencia" severity="warn">
+            <p:commandButton value="Sí, eliminar"
+                             actionListener="#{UABeanUI.eliminarUA}"
+                             update=":formBajaUA:messages"
+                             oncomplete="PF('confirmProfe').hide()"/>
+            <p:commandButton value="No"
+                             onclick="PF('confirmProfe').hide()"
+                             type="button"/>
+        </p:confirmDialog>
+    </h:form>
+
+    <footer class="footer">© 2025 SAUAP — Todos los derechos reservados</footer>
+</h:body>
+</html>
