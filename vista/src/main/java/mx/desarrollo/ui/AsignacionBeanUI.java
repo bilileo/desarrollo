@@ -37,24 +37,51 @@ public class AsignacionBeanUI implements Serializable {
 
     public void asignar() {
         try {
-            boolean success = asignarHelper.Asignacion(idProfesor, idUA, lunes, martes, miercoles, jueves, viernes);
+            int error = asignarHelper.Asignacion(idProfesor, idUA, lunes, martes, miercoles, jueves, viernes);
 
-            if(success) {
+            if(error == 0) {
                 FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO,
                                 "Asignacion Exitoso",
                                 "Se ha asignado correctamente"));
             }
             else{
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                "Error de asignación",
+                switch(error){
+                    case 1:
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "No existe la Unidad de aprendizaje con el ID proporcionado",null));
+                        break;
+                    case 2:
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "No existe el profesor con el ID proporcionado",null));
+                        break;
+                    case 3:
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Error de asignación",
                                 "Posiblemente hay un traslape en el horario del profesor existente"));
+                        break;
+                    case 4:
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "Error de asignación",
+                                        "Las horas no coinciden con la Unidad de Aprendizaje al asignar"));
+                        break;
+                    case 5:
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "Error duplicación",
+                                        "Ya está registrado "));
+                        break;
+
+                }
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "No existe un profesor o Unidad de aprendizaje con el ID proporcionado",null));
+                            "Error","Favor de llenar los datos correctamente"));
             e.printStackTrace();
         }
     }
