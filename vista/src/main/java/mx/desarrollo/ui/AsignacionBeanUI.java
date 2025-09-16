@@ -87,6 +87,46 @@ public class AsignacionBeanUI implements Serializable {
         }
     }
 
+    public void modificar() {
+        try {
+            int error = asignarHelper.Modificacion(idProfesor, idUA, lunes, martes, miercoles, jueves, viernes);
+
+            if(error == 0) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO,
+                                "Modificación Exitoso",
+                                "Se ha modificado correctamente"));
+            }
+            else{
+                switch(error){
+                    case 1:
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "No existe la asignación con el ID proporcionado",null));
+                        break;
+                    case 3:
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "Error de modificación",
+                                        "Posiblemente hay un traslape en el horario del profesor existente"));
+                        break;
+                    case 4:
+                        int h = asignarHelper.TotalHorasRequeridas(idUA);
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "Error de asignación",
+                                        "Las horas no coinciden con la Unidad de Aprendizaje al asignar, son " + Integer.toString(h) + " horas requeridas"));
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Error","Favor de llenar los datos correctamente"));
+            e.printStackTrace();
+        }
+    }
+
     public void eliminar() {
         try {
             asignarHelper.eliminarAsignacion(idProfesor, idUA);
