@@ -18,7 +18,10 @@ public class FacadeUnidadAprendizaje {
     public boolean tieneProfeAsignado(int uaID){
         return delegateUnidadAprendizaje.tieneProfeAsignado(uaID);
     }
+
     public void eliminarUA(int uaID) throws Exception {
         delegateUnidadAprendizaje.eliminarUA(uaID);
     }
+
+    public void
 }

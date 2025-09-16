@@ -15,11 +15,18 @@ public class DelegateUnidadAprendizaje {
     }
 
     public void eliminarUA(int uaID) throws Exception {
-        // el metodo abstracto devuelve optional
-        Optional<Unidadaprendizaje> opua = ServiceLocator.getInstanceUnidadAprendizajeDAO().find(uaID);
-        // extraer ua
-        Unidadaprendizaje ua = opua.orElseThrow(()->new Exception("No se encontró la UA con id: " + uaID));
-        // eliminar
-        ServiceLocator.getInstanceUnidadAprendizajeDAO().eliminarUA(ua);
+        try{
+            ServiceLocator.getInstanceUnidadAprendizajeDAO().eliminarUA(uaID);
+        } catch (Exception e) {
+            throw new Exception("Error al eliminar la UA: " + e.getMessage());
+        }
+    }
+
+    public boolean existeUA(int uaID) throws Exception {
+        try{
+            ServiceLocator.getInstanceUnidadAprendizajeDAO().existeUA(uaID);
+        } catch (Exception e) {
+            throw new Exception("Error: no se pudo encontrar la UA." + e.getMessage());
+        }
     }
 }

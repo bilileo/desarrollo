@@ -52,6 +52,11 @@ public class UABeanUI implements Serializable {
         }
     }
 
+    // si el dato ingresado fue válido
+    public void preBaja(){
+        PrimeFaces.current().executeScript("PF('confirmEliminar').show()");
+    }
+
     public void baja(){
         try{
             if(!uaHelper.tieneProfeAsignado(uaID)){
