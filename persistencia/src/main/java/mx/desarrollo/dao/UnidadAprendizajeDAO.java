@@ -81,6 +81,7 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
     public boolean existeUA(int uaID){
         EntityTransaction tx = entityManager.getTransaction();
         try{
+            tx.begin();
             Long count = (Long) entityManager.createQuery(
                     "SELECT COUNT(u) FROM Unidadaprendizaje u WHERE u.id = :id")
                     .setParameter("id",uaID)
