@@ -30,4 +30,15 @@ public class FacadeUnidadAprendizaje {
         return delegateUnidadAprendizaje.getListaUnidades();
     }
 
+    public boolean tieneProfeAsignado(int uaID){
+        return delegateUnidadAprendizaje.tieneProfeAsignado(uaID);
+    }
+
+    public void eliminarUA(int uaID) throws Exception {
+        delegateUnidadAprendizaje.eliminarUA(uaID);
+    }
+
+    public boolean existeUA(int uaID) throws Exception{
+        return delegateUnidadAprendizaje.existeUA(uaID);
+    }
 }

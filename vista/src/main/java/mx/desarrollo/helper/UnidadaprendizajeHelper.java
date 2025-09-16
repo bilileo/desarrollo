@@ -36,5 +36,15 @@ public class UnidadaprendizajeHelper implements Serializable {
         return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().obtenerUAS();
     }
 
+    public boolean tieneProfeAsignado(int uaID){
+        return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().tieneProfeAsignado(uaID);
+    }
 
+    public void eLiminarUA(int uaID) throws Exception{
+        ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().eliminarUA(uaID);
+    }
+
+    public boolean existeUA(int uaID) throws Exception {
+        return ServiceFacadeLocator.getInstanceFacadeUnidadAprendizaje().existeUA(uaID);
+    }
 }
