@@ -35,17 +35,14 @@ public class ProfesorDAO extends AbstractDAO<Profesor> {
         }
     }
 
-    /*public void guardar(Profesor profe) {
-        EntityTransaction tx = entityManager.getTransaction();
-        try {
-            tx.begin();
-            entityManager.persist(profe);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
-            throw e;
-        }
-    }*/
+    // ----- CONSULTAS PROFESOR -----
+    //agregue metodo para obtener los profesores ordenados con UA
+    public List<Profesor> obtenerProfesoresConUA() {
+        return getEntityManager()
+                .createQuery("SELECT p FROM Profesor p ORDER BY p.nombre, p.apellidoP, p.apellidoM", Profesor.class)
+                .getResultList();
+    }
+
 
     @Override
     public EntityManager getEntityManager() {
