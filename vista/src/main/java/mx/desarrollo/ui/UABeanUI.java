@@ -10,22 +10,22 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import mx.desarollo.entity.Unidadaprendizaje;
-import mx.desarrollo.helper.AltaUnidadaprendizajeHelper;
+import mx.desarrollo.helper.UnidadaprendizajeHelper;
 
 import java.io.Serializable;
 
-@Named("altaUABeanUI")
+@Named("UABeanUI")
 @SessionScoped
-public class AltaUABeanUI implements Serializable {
+public class UABeanUI implements Serializable {
 
-    private AltaUnidadaprendizajeHelper guardarHelper;
+    private UnidadaprendizajeHelper guardarHelper;
     private String nombre;
     private Byte hrsClase;
     private Byte hrsTaller;
     private Byte hrsLab;
 
-    public AltaUABeanUI() {
-        guardarHelper = new AltaUnidadaprendizajeHelper();
+    public UABeanUI() {
+        guardarHelper = new UnidadaprendizajeHelper();
     }
 
     public void alta() {

@@ -1,9 +1,14 @@
 package mx.desarrollo.integration;
 
+
 import jakarta.persistence.EntityManager;
+import mx.desarollo.entity.Profesor;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.dao.*;
 import mx.desarrollo.persistence.HibernateUtil;
+import java.util.List; //Se agregó libreria para poder manejar la lista de maestros
+
+
 
 
 /**
@@ -12,11 +17,15 @@ import mx.desarrollo.persistence.HibernateUtil;
  */
 public class ServiceLocator {
 
+
     private static UnidadAprendizajeDAO unidadAprendizajeDAO;
+    private static ProfesorDAO profesorDAO;
+
 
     private static EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager();
     }
+
 
     /**
      * se crea la instancia para UnidadAprendizajeDAO si esta no existe
@@ -29,6 +38,7 @@ public class ServiceLocator {
             return unidadAprendizajeDAO;
         }
     }
+
 
     public static void guardarUnidadAprendizaje(Unidadaprendizaje ua) {
         EntityManager em = getEntityManager();
@@ -43,5 +53,38 @@ public class ServiceLocator {
             throw ex; // relanzar o manejar el error
         }
     }
+
+
+    // ----- PROFESOR -----
+
+
+    // obtener instancia
+    public static ProfesorDAO getInstanceProfesorDAO(){
+        if(profesorDAO == null){
+            profesorDAO = new ProfesorDAO(getEntityManager());
+        }
+        return profesorDAO;
+    }
+    // guardar el profesor
+    public static void guardarProfesor(Profesor profe){
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            getInstanceProfesorDAO().guardar(profe);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex; // relanzar o manejar el error
+        }
+    }
+
+
+    //-----CONSULTA----
+    public static List<Profesor> obtenerProfesoresConUA() {
+        return getInstanceProfesorDAO().obtenerProfesoresConUA();
+    }
+
 
 }

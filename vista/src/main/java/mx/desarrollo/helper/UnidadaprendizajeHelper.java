@@ -12,7 +12,7 @@ import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
 
-public class AltaUnidadaprendizajeHelper implements Serializable {
+public class UnidadaprendizajeHelper implements Serializable {
 
 
     /**
