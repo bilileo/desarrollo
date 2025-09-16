@@ -24,9 +24,9 @@ public class DelegateUnidadAprendizaje {
 
     public boolean existeUA(int uaID) throws Exception {
         try{
-            ServiceLocator.getInstanceUnidadAprendizajeDAO().existeUA(uaID);
+            return ServiceLocator.getInstanceUnidadAprendizajeDAO().existeUA(uaID);
         } catch (Exception e) {
-            throw new Exception("Error: no se pudo encontrar la UA." + e.getMessage());
+            throw new Exception("No se pudo encontrar la UA." + e.getMessage());
         }
     }
 }

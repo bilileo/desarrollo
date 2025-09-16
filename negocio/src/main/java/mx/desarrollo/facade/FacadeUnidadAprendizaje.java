@@ -23,5 +23,7 @@ public class FacadeUnidadAprendizaje {
         delegateUnidadAprendizaje.eliminarUA(uaID);
     }
 
-    public void
+    public boolean existeUA(int uaID) throws Exception{
+        return delegateUnidadAprendizaje.existeUA(uaID);
+    }
 }
