@@ -15,7 +15,7 @@ import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
 
-@Named("altaUABeanUI")
+@Named("uABeanUI")
 @SessionScoped
 public class UABeanUI implements Serializable {
 
@@ -69,10 +69,17 @@ public class UABeanUI implements Serializable {
     }
 
     public void bajaDirecta() throws Exception {
+        try {
             uaHelper.eLiminarUA(uaID);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
-                            "Exito","UA eliminada correctamente."));
+                            "Exito", "UA eliminada correctamente."));
+        } catch(Exception w){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Error ","No se pudo eliminar la UA: " + w.getMessage()));
+            w.printStackTrace();
+        }
     }
 
     // getters y setters de nombre, hrsClase, hrsTaller, hrsLab obligatorios!!!
@@ -87,5 +94,8 @@ public class UABeanUI implements Serializable {
 
     public Byte getHrsLab() { return hrsLab; }
     public void setHrsLab(Byte hrsLab) { this.hrsLab = hrsLab; }
+
+    public int getUaID() {return uaID;}
+    public void setUaID(int uaID) {this.uaID = uaID;}
 }
 
