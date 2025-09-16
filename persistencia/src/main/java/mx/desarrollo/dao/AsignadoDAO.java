@@ -5,8 +5,6 @@ import jakarta.persistence.EntityTransaction;
 import mx.desarollo.entity.Asignado;
 import mx.desarrollo.persistence.AbstractDAO;
 import mx.desarollo.entity.AsignadoId;
-import mx.desarollo.entity.Unidadaprendizaje;
-import mx.desarollo.persistence.AbstractDAO;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class AsignadoDAO extends AbstractDAO<Asignado> {
         try {
             tx.begin();
             entityManager.createNativeQuery(
-                            "INSERT INTO asignado (Id_profesor, Id_ua,HrsClase,HrsTaller,HrsLab,Lunes,Martes,Miercoles,Jueves,Viernes) VALUES (?,?,?,?,?,?,?,?,?,?)")
+            "INSERT INTO asignado (Id_profesor, Id_ua,HrsClase,HrsTaller,HrsLab,Lunes,Martes,Miercoles,Jueves,Viernes) VALUES (?,?,?,?,?,?,?,?,?,?)")
                     .setParameter(1, asignacion.getId().getIdProfesor())
                     .setParameter(2, asignacion.getId().getIdUa())
                     .setParameter(3, asignacion.getHrsClase())
