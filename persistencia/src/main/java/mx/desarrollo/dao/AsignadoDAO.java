@@ -42,6 +42,29 @@ public class AsignadoDAO extends AbstractDAO<Asignado> {
         }
     }
 
+    public void modificar(Asignado asignacion) {
+        EntityTransaction tx = entityManager.getTransaction();
+        try {
+            tx.begin();
+            entityManager.createNativeQuery(
+                    "UPDATE asignado SET Lunes = ?, Martes = ?, Miercoles = ?, Jueves = ?, Viernes = ? WHERE (`Id_profesor` = ?) and (`Id_ua` = ?);")
+                    .setParameter(1, asignacion.getLunes())
+                    .setParameter(2, asignacion.getMartes())
+                    .setParameter(3, asignacion.getMiercoles())
+                    .setParameter(4, asignacion.getJueves())
+                    .setParameter(5, asignacion.getViernes())
+                    .setParameter(6, asignacion.getId().getIdProfesor())
+                    .setParameter(7, asignacion.getId().getIdUa())
+                    .executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw e;
+        }
+    }
+
     public void eliminar(AsignadoId id) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
