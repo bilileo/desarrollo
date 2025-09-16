@@ -13,6 +13,7 @@ import mx.desarrollo.persistence.HibernateUtil;
 public class ServiceLocator {
 
     private static UnidadAprendizajeDAO unidadAprendizajeDAO;
+    private static AdministradorDAO administradorDAO;
 
     private static EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager();
@@ -27,6 +28,15 @@ public class ServiceLocator {
             return unidadAprendizajeDAO;
         } else{
             return unidadAprendizajeDAO;
+        }
+    }
+
+    public static AdministradorDAO getInstanceAdministradorDAO(){
+        if(administradorDAO == null){
+            administradorDAO = new AdministradorDAO(getEntityManager());
+            return administradorDAO;
+        } else{
+            return administradorDAO;
         }
     }
 }
