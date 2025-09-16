@@ -35,18 +35,6 @@ public class UnidadAprendizajeDAO extends AbstractDAO<Unidadaprendizaje> {
         }
     }
 
-    /*public void guardar(Unidadaprendizaje unidad) {
-        EntityTransaction tx = entityManager.getTransaction();
-        try {
-            tx.begin();
-            entityManager.persist(unidad);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
-            throw e;
-        }
-    }*/
-
     @Override
     public EntityManager getEntityManager() {
         return entityManager;

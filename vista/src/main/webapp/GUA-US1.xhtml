@@ -9,20 +9,26 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <style>
-            
-            *{
+
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background-image: url("https://angloecuatoriana.com/wp-content/uploads/2019/11/fondo-formulario.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .panel-body {
                 text-align: center;
             }
-            .center{
-                float: none;
-                margin: 0 auto;
-                
-            }
-            
-           
-            div.login{
+            div.panel-body {
                 position: absolute;
-                top:0;
+                top: 0;
                 bottom: 0;
                 left: 0;
                 right: 0;
@@ -30,19 +36,40 @@
                 width: 25%;
                 padding: 25px;
                 margin: auto;
-                background: white;
                 border-radius: 5px;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                background-color: white;
             }
-            .logo{
-                width: 150px;
+            .panel-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                background-color: #00723f;
             }
-            .form-control:focus{
-                border-color:#007738;
-            }
-            .btn-success{
+            .Titulo {
                 text-shadow: none;
+                text-align: left;
+                padding-left: 30px;
+                color: white;
+               display: flex;
+                align-items: center;
+                gap: 10px;           }
+            .Enlaces {
+                text-shadow: none;
+                text-align: right;
+                padding-right: 30px;
+                color: white;
             }
+            .footer {
+                background-color: black;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                margin-top: auto;
+            }
+
         </style>
     </h:head>
     <h:body>
@@ -50,12 +77,17 @@
             <h:form id="formAltaUA">
 
                 <!-- mensajes de validación / confirmación -->
-                <p:messages id="messages" showDetail="true" closable="true" />
+                <p:messages id="messages" showDetail="true" closable="true"/>
 
                 <div class="panel">
                     <div class="panel-header">
-                        <p:graphicImage url="resources/uabcl.png" class="logo" />
-                        <h2>Alta de Unidad de Aprendizaje</h2>
+                        <div class = "Titulo">
+                            <p:button value="Regresar" outcome="GUA-US1.xhtml" />
+                            <h2>Alta de Unidad de Aprendizaje</h2>
+                        </div>
+                        <div class = "Enlaces">
+                            <p:button value="Cerrar sesión" outcome="GUA-US1.xhtml" />
+                        </div>
                     </div>
 
                     <div class="panel-body">
@@ -63,26 +95,32 @@
                         <div class="form-group">
                             <p:inputText class="form-control"
                                          placeholder="Nombre de la UA"
-                                         value="#{altaUABeanUI.nombre}" />
+                                         value="#{altaUABeanUI.nombre}"
+                                         required="true"
+                                         requiredMessage="El campo Nombre es obligatorio"/>
                         </div>
 
                         <!-- Campo Horas Clase -->
                         <div class="form-group">
-                            <p:inputText class="form-control"
+                            <p:inputMask class="form-control"
+                                         mask="9"
                                          placeholder="Horas Clase"
-                                         value="#{altaUABeanUI.hrsClase}" />
+                                         value="#{altaUABeanUI.hrsClase}"/>
                         </div>
 
                         <!-- Campo Horas Taller -->
                         <div class="form-group">
-                            <p:inputText class="form-control"
+                            <p:inputMask class="form-control"
+                                         mask="9"
                                          placeholder="Horas Taller"
-                                         value="#{altaUABeanUI.hrsTaller}" />
+                                         value="#{altaUABeanUI.hrsTaller}"/>
                         </div>
 
                         <!-- Campo Horas Lab -->
                         <div class="form-group">
-                            <p:inputText class="form-control"
+                            <p:inputMask id="hrsLab"
+                                         class="form-control"
+                                         mask="9"
                                          placeholder="Horas Laboratorio"
                                          value="#{altaUABeanUI.hrsLab}" />
                         </div>
@@ -91,11 +129,15 @@
                         <p:commandButton value="Guardar"
                                          action="#{altaUABeanUI.alta}"
                                          update="messages"/>
+                        <p:commandButton value="Limpiar campos"
+                                         action="#{altaUABeanUI.limpiar}"
+                                         update="formAltaUA mensajes"/>
 
+                        <br/>
                     </div>
                 </div>
             </h:form>
         </div>
+        <footer class="footer">© 2025 SAUAP — Todos los derechos reservados</footer>
     </h:body>
-
 </html>
