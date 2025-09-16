@@ -41,6 +41,33 @@ public class AsignacionBeanUI implements Serializable {
         }
     }
 
+    public void eliminar() {
+        try {
+            asignarHelper.eliminarAsignacion(idProfesor, idUA);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "Eliminación exitosa",
+                            "La asignación fue eliminada correctamente"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "No existe asignación con los IDs proporcionados", null));
+            e.printStackTrace();
+        }
+    }
+    /*public void eliminar() {
+        try {
+            asignarHelper.eliminarAsignacion(idProfesor, idUA);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,"Eliminacion exitosa", "La asignacion fue eliminada correctamente"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR," - No existe asignacion con la IDs proporcionados - ",null));
+            e.printStackTrace();
+        }
+    }*/
+
     public Integer getIdProfesor() { return idProfesor; }
     public void setIdProfesor(Integer idProfesor) { this.idProfesor = idProfesor; }
     public Integer getIdUA() { return idUA; }

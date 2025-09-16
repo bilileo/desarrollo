@@ -6,4 +6,8 @@ public class AsignacionUnidadAprendizajeProfesorHelper {
     public void Asignacion(Integer idProfesor, Integer idUA){
         ServiceFacadeLocator.getInstanceFacadeAsignacionUnidadProfesor().asignar(idProfesor,idUA);
     }
+
+    public void eliminarAsignacion(Integer idProfesor, Integer idUA){
+        ServiceFacadeLocator.getInstanceFacadeAsignacionUnidadProfesor().eliminar(idProfesor,idUA);
+    }
 }
