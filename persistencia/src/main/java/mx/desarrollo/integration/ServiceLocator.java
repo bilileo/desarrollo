@@ -80,7 +80,7 @@ public class ServiceLocator {
         }
     }
 
-
+//para comit de cod. cap. pers
     //-----CONSULTA----
     public static List<Profesor> obtenerProfesoresConUA() {
         return getInstanceProfesorDAO().obtenerProfesoresConUA();
