@@ -57,6 +57,69 @@ public class DelegateAsignacionUnidadProfesor {
         return total;
     }
 
+    public int modificar(Integer idProfesor, Integer idUA, boolean[] lunes, boolean[] martes, boolean[] miercoles, boolean[] jueves, boolean[] viernes){
+        List<Asignado> list = ServiceLocator.getInstanceAsignadoDAO().findAll();
+        Asignado encontrado = null;
+        for (Asignado unidad : list) {
+            if(unidad.getId().getIdProfesor().equals(idProfesor) && unidad.getId().getIdUa().equals(idUA)){
+                encontrado = unidad;
+                break;
+            }
+        }
+
+        if(encontrado == null){
+            return 1;
+        }
+
+        int total = (int)encontrado.getHrsClase() + (int)encontrado.getHrsLab() + (int)encontrado.getHrsTaller();
+        int totalHoras = booleanTrue(lunes) + booleanTrue(martes) + booleanTrue(miercoles) + booleanTrue(jueves) + booleanTrue(viernes);
+
+        if(total != totalHoras){
+            return 4;
+        }
+
+        boolean success = true;
+        for (Asignado unidad : list) {
+            if(unidad != encontrado) {
+                if(unidad.getId().getIdProfesor().equals(idProfesor)) {
+                    if (traslape(unidad.getLunes(), toByteArray(lunes))) {
+                        success = false;
+                        break;
+                    }
+                    if (traslape(unidad.getMartes(), toByteArray(martes))) {
+                        success = false;
+                        break;
+                    }
+                    if (traslape(unidad.getMiercoles(), toByteArray(miercoles))) {
+                        success = false;
+                        break;
+                    }
+                    if (traslape(unidad.getJueves(), toByteArray(jueves))) {
+                        success = false;
+                        break;
+                    }
+                    if (traslape(unidad.getViernes(), toByteArray(viernes))) {
+                        success = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(!success){
+            return 3; //Traslape de horario
+        }
+
+        encontrado.setLunes(toByteArray(lunes));
+        encontrado.setMartes(toByteArray(martes));
+        encontrado.setMiercoles(toByteArray(miercoles));
+        encontrado.setJueves(toByteArray(jueves));
+        encontrado.setViernes(toByteArray(viernes));
+
+        ServiceLocator.getInstanceAsignadoDAO().modificar(encontrado);
+        return 0;
+    }
+
     public int asignar(Integer idProfesor, Integer idUA, boolean[] lunes, boolean[] martes, boolean[] miercoles, boolean[] jueves, boolean[] viernes){
         Optional<Unidadaprendizaje> info = ServiceLocator.getInstanceUnidadAprendizajeDAO().find(idUA);
         Optional<Profesor> profe = ServiceLocator.getInstanceProfesorDAO().find(idProfesor);
