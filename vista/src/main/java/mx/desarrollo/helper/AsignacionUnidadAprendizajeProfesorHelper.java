@@ -9,4 +9,8 @@ public class AsignacionUnidadAprendizajeProfesorHelper {
     public int TotalHorasRequeridas(Integer idUA){
         return ServiceFacadeLocator.getInstanceFacadeAsignacionUnidadProfesor().TotalHorasRequeridas(idUA);
     }
+
+    public void eliminarAsignacion(Integer idProfesor, Integer idUA){
+        ServiceFacadeLocator.getInstanceFacadeAsignacionUnidadProfesor().eliminar(idProfesor,idUA);
+    }
 }

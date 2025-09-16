@@ -4,6 +4,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import mx.desarollo.entity.Asignado;
 import mx.desarrollo.persistence.AbstractDAO;
+import mx.desarollo.entity.AsignadoId;
+import mx.desarollo.entity.Unidadaprendizaje;
+import mx.desarollo.persistence.AbstractDAO;
+
+import java.util.List;
 
 public class AsignadoDAO extends AbstractDAO<Asignado> {
     private final EntityManager entityManager;
@@ -35,6 +40,22 @@ public class AsignadoDAO extends AbstractDAO<Asignado> {
             if (tx.isActive()) {
                 tx.rollback();
             }
+            throw e;
+        }
+    }
+
+    public void eliminar(AsignadoId id) {
+        EntityTransaction tx = entityManager.getTransaction();
+        try {
+            tx.begin();
+            Asignado asignado = entityManager.find(Asignado.class, id);
+            if (asignado == null) {
+                throw new IllegalArgumentException(" - La asignacion no existe - ");
+            }
+            entityManager.remove(asignado);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
             throw e;
         }
     }

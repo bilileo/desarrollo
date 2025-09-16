@@ -133,4 +133,18 @@ public class DelegateAsignacionUnidadProfesor {
         ServiceLocator.getInstanceAsignadoDAO().asignar(asignado);
         return 0;
     }
+
+    public void eliminar(Integer idProfesor, Integer idUA) {
+        AsignadoId asignadoId = new AsignadoId();
+        asignadoId.setIdProfesor(idProfesor);
+        asignadoId.setIdUa(idUA);
+
+        /*Busca en la base de datos la asignación de este profesor a esta unidad de aprendizaje.
+        Agrega el resultado a una opción para que pueda comprobar si existe antes de intentar eliminarlo.*/
+        /*Optional<Asignado> asignado = ServiceLocator.getInstanceAsignadoDAO().find(asignadoId);
+        if(asignado.isEmpty()) {
+            throw new IllegalArgumentException(" - No existe la asignacion con los IDs proporcionadas - ");
+        }*/
+        ServiceLocator.getInstanceAsignadoDAO().eliminar(asignadoId);
+    }
 }

@@ -130,4 +130,13 @@ public class Asignado {
         this.viernes = viernes;
     }
 
+    //para liberar horas del profe
+    public int getTotalHoras() {
+        int total = 0;
+        if (hrsClase != null) total += hrsClase;
+        if (hrsTaller != null) total += hrsTaller;
+        if (hrsLab != null) total += hrsLab;
+        return total;
+    }
+
 }
