@@ -1,6 +1,7 @@
 package mx.desarrollo.integration;
 
 import jakarta.persistence.EntityManager;
+import mx.desarollo.entity.Profesor;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.dao.*;
 import mx.desarrollo.persistence.HibernateUtil;
@@ -15,6 +16,7 @@ public class ServiceLocator {
     private static UnidadAprendizajeDAO unidadAprendizajeDAO;
     private static AsignadoDAO asignadoDAO;
     private static ProfesorDAO profesorDAO;
+
     private static EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager();
     }
