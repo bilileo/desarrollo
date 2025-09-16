@@ -37,6 +37,22 @@ public class AsignadoDAO extends AbstractDAO<Asignado> {
         }
     }
 
+    public void eliminar(Asignado id) {
+        EntityTransaction tx = entityManager.getTransaction();
+        try {
+            tx.begin();
+            Asignado asignado = entityManager.find(Asignado.class, id);
+            if (asignado != null) {
+                throw new IllegalArgumentException(" - La asignacion no existe - ");
+            }
+            entityManager.remove(asignado);
+            tx.commit();
+        }  catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            throw e;
+        }
+    }
+
     @Override
     public EntityManager getEntityManager() {
         return entityManager;
