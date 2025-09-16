@@ -12,4 +12,6 @@ public class FacadeAsignacionUnidadProfesor {
     public void asignar(Integer idProfesor, Integer idUA) {
         delegateAsignacion.asignar(idProfesor, idUA);
     }
+
+    public void eliminar(Integer idProfesor, Integer idUA) { delegateAsignacion.eliminar(idProfesor, idUA); }
 }
