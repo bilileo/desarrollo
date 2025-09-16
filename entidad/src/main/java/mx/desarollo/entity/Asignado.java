@@ -75,6 +75,7 @@ public class Asignado {
         this.hrsLab = hrsLab;
     }
 
+    //para liberar horas del profe
     public int getTotalHoras() {
         int total = 0;
         if (hrsClase != null) total += hrsClase;
