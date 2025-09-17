@@ -3,11 +3,12 @@ package mx.desarrollo.dao;
 import jakarta.persistence.EntityManager;
 import mx.desarollo.entity.Administrador;
 import mx.desarollo.entity.Unidadaprendizaje;
+import mx.desarrollo.persistence.AbstractDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdministradorDAO extends mx.desarollo.persistence.AbstractDAO<Administrador> {
+public class AdministradorDAO extends AbstractDAO<Administrador> {
     private final EntityManager entityManager;
 
     public AdministradorDAO(EntityManager em) {
