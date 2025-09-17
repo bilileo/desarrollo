@@ -27,6 +27,19 @@ public class DelegateAsignacionUnidadProfesor {
         }
         return byteArray;
     }
+
+    public static byte reverseBits(byte n) {
+        byte rev = 0;
+        for (int i = 0; i < 8; i++) {
+            rev <<= 1;
+            if ((n & 1) == 1) {
+                rev |= 1;
+            }
+            n >>>= 1;
+        }
+        return rev;
+    }
+
     public static boolean[] toBooleanArray(byte[] byteArray) {
         if (byteArray == null) {
             return null;
@@ -34,7 +47,7 @@ public class DelegateAsignacionUnidadProfesor {
         boolean[] booleanArray = new boolean[byteArray.length * 8];
 
         for (int i = 0; i < byteArray.length; i++) {
-            byte currentByte = byteArray[i];
+            byte currentByte = reverseBits(byteArray[i]);
             for (int bitIndex = 0; bitIndex < 8; bitIndex++) {
                 booleanArray[i * 8 + bitIndex] = ((currentByte >> bitIndex) & 1) != 0;
             }

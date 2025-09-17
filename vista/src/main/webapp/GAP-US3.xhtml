@@ -27,30 +27,29 @@
         </style>
     </h:head>
     <h:body>
-        <div class="panel">
-            <div class="panel-header">
-                <div class="Titulo">
-                    <p:button value="Regresar" outcome="indexSAUAP.xhtml" />
-                    <h2>Asignación de Unidad de Aprendizaje a profesores</h2>
-                </div>
-                <div class="Enlaces">
-                    <p:button value="Cerrar sesión" outcome="loginSAUAP.xhtml" />
-                </div>
-            </div>
-        </div>
         <div class="row">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="Titulo">
+                        <p:button value="Regresar" outcome="indexSAUAP.xhtml" />
+                        <h2>Asignación de Unidad de Aprendizaje a profesores</h2>
+                    </div>
+                    <div class="Enlaces">
+                        <p:button value="Cerrar sesión" outcome="loginSAUAP.xhtml" />
+                    </div>
+                </div>
                 <!-- mensajes de validación / confirmación -->
-                <p:messages id="messages" showDetail="true" closable="true" />
-
                     <div class="panel-body-custom">
-                        <p:panelGrid columns="6" layout="grid">
+                        <p:messages id="messages" showDetail="true" closable="true" />
                             <p:column>
+                                <h:form id="Busqueda">
                                 <p:inputText class="form-control"
                                              placeholder="ID UA"
                                              value="#{asignacionBeanUI.idUA}" />
                                 <p:commandButton value="Buscar"
                                                  action="#{asignacionBeanUI.consultaUA}"
                                                  update=":comboBoxUA"/>
+                                </h:form>
                             <div class="ComboBox">
                                 <h:form id="comboBoxUA">
                                     <p:selectOneMenu value="#{asignacionBeanUI.idProfesor}">
@@ -59,16 +58,895 @@
                                     </p:selectOneMenu>
                                 </h:form>
                             </div>
+                                <!-- Botón Guardar -->
                             </p:column>
                         <h:form id="formModificarProfesorUA">
+                            <p:panelGrid columns="6" layout="grid">
+                                <p:column>
+                                <p:commandButton value="Modificar"
+                                                 action="#{asignacionBeanUI.modificar}"
+                                                 update="messages"/>
+                                </p:column>
+                            <p:column>
+                                <div class="form-group">
+                                    <h1>Lunes</h1>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[0]}" />
+                                            <p:column>00:00 - 01:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[1]}" />
+                                            <p:column>01:00 - 02:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[2]}" />
+                                            <p:column>02:00 - 03:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[3]}" />
+                                            <p:column>03:00 - 04:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[4]}" />
+                                            <p:column>04:00 - 05:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[5]}" />
+                                            <p:column>05:00 - 06:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[6]}" />
+                                            <p:column>06:00 - 07:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[7]}" />
+                                            <p:column>07:00 - 08:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[8]}" />
+                                            <p:column>08:00 - 09:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[9]}" />
+                                            <p:column>09:00 - 10:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[10]}" />
+                                            <p:column>10:00 - 11:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[11]}" />
+                                            <p:column>11:00 - 12:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[12]}" />
+                                            <p:column>12:00 - 13:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[13]}" />
+                                            <p:column>13:00 - 14:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.lunes[14]}" />
+                                            <p:column>14:00 - 15:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[15]}" />
+                                        <p:row>
+                                            <p:column>15:00 - 16:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[16]}" />
+                                        <p:row>
+                                            <p:column>16:00 - 17:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[17]}" />
+                                        <p:row>
+                                            <p:column>17:00 - 18:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[18]}" />
+                                        <p:row>
+                                            <p:column>18:00 - 19:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[19]}" />
+                                        <p:row>
+                                            <p:column>19:00 - 20:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[20]}" />
+                                        <p:row>
+                                            <p:column>20:00 - 21:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[21]}" />
+                                        <p:row>
+                                            <p:column>21:00 - 22:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[22]}" />
+                                        <p:row>
+                                            <p:column>22:00 - 23:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.lunes[23]}" />
+                                        <p:row>
+                                            <p:column>23:00 - 00:00</p:column>
+                                        </p:row>
+                                    </div>
+                                </div>
+                            </p:column>
+                            <p:column>
+                                <div class="form-group">
+                                    <h1>Martes</h1>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[0]}" />
+                                            <p:column>00:00 - 01:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[1]}" />
+                                            <p:column>01:00 - 02:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[2]}" />
+                                            <p:column>02:00 - 03:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[3]}" />
+                                            <p:column>03:00 - 04:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[4]}" />
+                                            <p:column>04:00 - 05:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[5]}" />
+                                            <p:column>05:00 - 06:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[6]}" />
+                                            <p:column>06:00 - 07:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[7]}" />
+                                            <p:column>07:00 - 08:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[8]}" />
+                                            <p:column>08:00 - 09:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[9]}" />
+                                            <p:column>09:00 - 10:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[10]}" />
+                                            <p:column>10:00 - 11:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[11]}" />
+                                            <p:column>11:00 - 12:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[12]}" />
+                                            <p:column>12:00 - 13:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[13]}" />
+                                            <p:column>13:00 - 14:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.martes[14]}" />
+                                            <p:column>14:00 - 15:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[15]}" />
+                                        <p:row>
+                                            <p:column>15:00 - 16:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[16]}" />
+                                        <p:row>
+                                            <p:column>16:00 - 17:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[17]}" />
+                                        <p:row>
+                                            <p:column>17:00 - 18:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[18]}" />
+                                        <p:row>
+                                            <p:column>18:00 - 19:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[19]}" />
+                                        <p:row>
+                                            <p:column>19:00 - 20:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[20]}" />
+                                        <p:row>
+                                            <p:column>20:00 - 21:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[21]}" />
+                                        <p:row>
+                                            <p:column>21:00 - 22:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[22]}" />
+                                        <p:row>
+                                            <p:column>22:00 - 23:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.martes[23]}" />
+                                        <p:row>
+                                            <p:column>23:00 - 00:00</p:column>
+                                        </p:row>
+                                    </div>
+                                </div>
+                            </p:column>
+                            <p:column>
+                                <div class="form-group">
+                                    <h1>Miercoles</h1>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[0]}" />
+                                            <p:column>00:00 - 01:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[1]}" />
+                                            <p:column>01:00 - 02:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[2]}" />
+                                            <p:column>02:00 - 03:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[3]}" />
+                                            <p:column>03:00 - 04:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[4]}" />
+                                            <p:column>04:00 - 05:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[5]}" />
+                                            <p:column>05:00 - 06:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[6]}" />
+                                            <p:column>06:00 - 07:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[7]}" />
+                                            <p:column>07:00 - 08:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[8]}" />
+                                            <p:column>08:00 - 09:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[9]}" />
+                                            <p:column>09:00 - 10:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[10]}" />
+                                            <p:column>10:00 - 11:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[11]}" />
+                                            <p:column>11:00 - 12:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[12]}" />
+                                            <p:column>12:00 - 13:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[13]}" />
+                                            <p:column>13:00 - 14:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.miercoles[14]}" />
+                                            <p:column>14:00 - 15:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[15]}" />
+                                        <p:row>
+                                            <p:column>15:00 - 16:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[16]}" />
+                                        <p:row>
+                                            <p:column>16:00 - 17:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[17]}" />
+                                        <p:row>
+                                            <p:column>17:00 - 18:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[18]}" />
+                                        <p:row>
+                                            <p:column>18:00 - 19:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[19]}" />
+                                        <p:row>
+                                            <p:column>19:00 - 20:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[20]}" />
+                                        <p:row>
+                                            <p:column>20:00 - 21:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[21]}" />
+                                        <p:row>
+                                            <p:column>21:00 - 22:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[22]}" />
+                                        <p:row>
+                                            <p:column>22:00 - 23:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.miercoles[23]}" />
+                                        <p:row>
+                                            <p:column>23:00 - 00:00</p:column>
+                                        </p:row>
+                                    </div>
+                                </div>
+                            </p:column>
+                            <p:column>
+                                <div class="form-group">
+                                    <h1>Jueves</h1>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[0]}" />
+                                            <p:column>00:00 - 01:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[1]}" />
+                                            <p:column>01:00 - 02:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[2]}" />
+                                            <p:column>02:00 - 03:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[3]}" />
+                                            <p:column>03:00 - 04:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[4]}" />
+                                            <p:column>04:00 - 05:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[5]}" />
+                                            <p:column>05:00 - 06:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[6]}" />
+                                            <p:column>06:00 - 07:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[7]}" />
+                                            <p:column>07:00 - 08:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[8]}" />
+                                            <p:column>08:00 - 09:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[9]}" />
+                                            <p:column>09:00 - 10:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[10]}" />
+                                            <p:column>10:00 - 11:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[11]}" />
+                                            <p:column>11:00 - 12:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[12]}" />
+                                            <p:column>12:00 - 13:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[13]}" />
+                                            <p:column>13:00 - 14:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.jueves[14]}" />
+                                            <p:column>14:00 - 15:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[15]}" />
+                                        <p:row>
+                                            <p:column>15:00 - 16:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[16]}" />
+                                        <p:row>
+                                            <p:column>16:00 - 17:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[17]}" />
+                                        <p:row>
+                                            <p:column>17:00 - 18:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[18]}" />
+                                        <p:row>
+                                            <p:column>18:00 - 19:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[19]}" />
+                                        <p:row>
+                                            <p:column>19:00 - 20:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[20]}" />
+                                        <p:row>
+                                            <p:column>20:00 - 21:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[21]}" />
+                                        <p:row>
+                                            <p:column>21:00 - 22:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[22]}" />
+                                        <p:row>
+                                            <p:column>22:00 - 23:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.jueves[23]}" />
+                                        <p:row>
+                                            <p:column>23:00 - 00:00</p:column>
+                                        </p:row>
+                                    </div>
+                                </div>
+                            </p:column>
+                            <p:column>
+                                <div class="form-group">
+                                    <h1>Viernes</h1>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[0]}" />
+                                            <p:column>00:00 - 01:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[1]}" />
+                                            <p:column>01:00 - 02:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[2]}" />
+                                            <p:column>02:00 - 03:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[3]}" />
+                                            <p:column>03:00 - 04:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[4]}" />
+                                            <p:column>04:00 - 05:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[5]}" />
+                                            <p:column>05:00 - 06:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[6]}" />
+                                            <p:column>06:00 - 07:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[7]}" />
+                                            <p:column>07:00 - 08:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[8]}" />
+                                            <p:column>08:00 - 09:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[9]}" />
+                                            <p:column>09:00 - 10:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[10]}" />
+                                            <p:column>10:00 - 11:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[11]}" />
+                                            <p:column>11:00 - 12:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[12]}" />
+                                            <p:column>12:00 - 13:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[13]}" />
+                                            <p:column>13:00 - 14:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:row>
+                                            <h:selectBooleanCheckbox
+                                                    value="#{asignacionBeanUI.viernes[14]}" />
+                                            <p:column>14:00 - 15:00</p:column>
+                                        </p:row>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[15]}" />
+                                        <p:row>
+                                            <p:column>15:00 - 16:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[16]}" />
+                                        <p:row>
+                                            <p:column>16:00 - 17:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[17]}" />
+                                        <p:row>
+                                            <p:column>17:00 - 18:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[18]}" />
+                                        <p:row>
+                                            <p:column>18:00 - 19:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[19]}" />
+                                        <p:row>
+                                            <p:column>19:00 - 20:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[20]}" />
+                                        <p:row>
+                                            <p:column>20:00 - 21:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[21]}" />
+                                        <p:row>
+                                            <p:column>21:00 - 22:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[22]}" />
+                                        <p:row>
+                                            <p:column>22:00 - 23:00</p:column>
+                                        </p:row>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectBooleanCheckbox
+                                                value="#{asignacionBeanUI.viernes[23]}" />
+                                        <p:row>
+                                            <p:column>23:00 - 00:00</p:column>
+                                        </p:row>
+                                    </div>
+                                </div>
+                            </p:column>
+                            </p:panelGrid>
                         </h:form>
-                        </p:panelGrid>
                     </div>
         </div>
-                        <!-- Botón Guardar -->
-                        <p:commandButton value="Modificar"
-                                         action="#{asignacionBeanUI.modificar}"
-                                         update="messages"/>
+        </div>
     </h:body>
 
 </html>

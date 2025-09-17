@@ -32,7 +32,6 @@
             <h:form id="formAsignacionProfesorUA">
 
                 <!-- mensajes de validación / confirmación -->
-                <p:messages id="messages" showDetail="true" closable="true" />
 
                 <div class="panel">
                 <div class="panel-header">
@@ -49,6 +48,7 @@
 
                 <div class="panel-body-custom">
 
+                    <p:messages id="messages" showDetail="true" closable="true" />
                         <p:panelGrid columns="6" layout="grid">
                             <p:column>
                             <!-- Campo ID Profesor-->
@@ -64,6 +64,9 @@
                                              placeholder="ID UA"
                                              value="#{asignacionBeanUI.idUA}" />
                             </div>
+                                <p:commandButton value="Guardar"
+                                                 action="#{asignacionBeanUI.asignar}"
+                                                 update="messages"/>
                             </p:column>
                         <p:column>
                         <div class="form-group">
@@ -942,9 +945,6 @@
                         </p:column>
                         </p:panelGrid>
                         <!-- Botón Guardar -->
-                        <p:commandButton value="Guardar"
-                                         action="#{asignacionBeanUI.asignar}"
-                                         update="messages"/>
                 </div>
             </h:form>
         </div>

@@ -13,6 +13,7 @@ import mx.desarollo.entity.Asignado;
 import mx.desarrollo.helper.AsignacionUnidadAprendizajeProfesorHelper;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named("asignacionBeanUI")
@@ -36,6 +37,9 @@ public class AsignacionBeanUI implements Serializable {
         miercoles = new boolean[24];
         jueves = new boolean[24];
         viernes = new boolean[24];
+        profesores = new ArrayList<>();
+        idProfesor = 0;
+        idUA = 0;
     }
 
     public void consultaUA(){
