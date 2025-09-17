@@ -1,5 +1,6 @@
 package mx.desarrollo.integration;
 
+import mx.desarrollo.facade.FacadeAdministrador;
 import mx.desarrollo.facade.FacadeAsignacionUnidadProfesor;
 import mx.desarrollo.facade.FacadeProfesor;
 import mx.desarrollo.facade.FacadeUnidadAprendizaje;
@@ -9,6 +10,7 @@ public class ServiceFacadeLocator {
     private static FacadeUnidadAprendizaje facadeUnidadAprendizaje;
     private static FacadeAsignacionUnidadProfesor facadeAsignacionUnidadProfesor;
     private static FacadeProfesor facadeProfesor;
+    private static FacadeAdministrador facadeAdministrador;
 
     public static FacadeUnidadAprendizaje getInstanceFacadeUnidadAprendizaje() {
         if (facadeUnidadAprendizaje == null) {
@@ -29,12 +31,21 @@ public class ServiceFacadeLocator {
     }
 
     // para el profesor
-    public static FacadeProfesor getInstanceFacadeProfesor(){
-        if(facadeProfesor == null){
+    public static FacadeProfesor getInstanceFacadeProfesor() {
+        if (facadeProfesor == null) {
             facadeProfesor = new FacadeProfesor();
-            return  facadeProfesor;
+            return facadeProfesor;
         } else {
             return facadeProfesor;
+        }
+    }
+
+    public static FacadeAdministrador getInstanceFacadeAdministrador() {
+        if (facadeAdministrador == null) {
+            facadeAdministrador = new FacadeAdministrador();
+            return facadeAdministrador;
+        } else {
+            return facadeAdministrador;
         }
     }
 }
