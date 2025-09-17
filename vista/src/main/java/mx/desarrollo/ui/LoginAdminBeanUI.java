@@ -28,7 +28,7 @@ public class LoginAdminBeanUI implements Serializable {
     }
 
     public void login() throws IOException {
-        String appURL = "/GUA-US1.xhtml";
+        String appURL = "/indexSAUAP.xhtml";
         Administrador admin = loginHelper.Login(administrador.getMailAdministrador(),
                 administrador.getPassAdministrador());
 

@@ -82,11 +82,11 @@
                 <div class="panel">
                     <div class="panel-header">
                         <div class = "Titulo">
-                            <p:button value="Regresar" outcome="GUA-US1.xhtml" />
+                            <p:button value="Regresar" outcome="indexSAUAP.xhtml" />
                             <h2>Alta de Unidad de Aprendizaje</h2>
                         </div>
                         <div class = "Enlaces">
-                            <p:button value="Cerrar sesión" outcome="GUA-US3.xhtml" />
+                            <p:commandButton value="Cerrar sesión" action="#{loginSAUAP.logout}" ajax="false" immediate="true" />
                         </div>
                     </div>
 
@@ -125,10 +125,12 @@
                                          value="#{altaUABeanUI.hrsLab}" />
                         </div>
 
-                        <!-- Botón Guardar -->
+                        <!-- Boton Guardar -->
                         <p:commandButton value="Guardar"
                                          action="#{altaUABeanUI.alta}"
                                          update="messages"/>
+
+                        <!-- Boton Limpiar -->
                         <p:commandButton value="Limpiar campos"
                                          action="#{altaUABeanUI.limpiar}"
                                          update="formAltaUA mensajes"/>
