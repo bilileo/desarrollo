@@ -55,11 +55,20 @@ public class ProfesorDAO extends AbstractDAO<Profesor> {
 
 
     // ----- CONSULTAS PROFESOR -----
-    //commit.2 agregue metodo para obtener los profesores ordenados con UA
     public List<Profesor> obtenerProfesoresConUA() {
-        return getEntityManager()
-                .createQuery("SELECT p FROM Profesor p ORDER BY p.nombre, p.apellidoP, p.apellidoM", Profesor.class)
+        List<Profesor> profesores = getEntityManager()
+                .createQuery("SELECT DISTINCT p FROM Profesor p " +
+                        "LEFT JOIN FETCH p.asignados a " +
+                        "LEFT JOIN FETCH a.idUa " +
+                        "ORDER BY p.nombre, p.apellidoP, p.apellidoM", Profesor.class)
                 .getResultList();
+
+        // Forzar refresh para traer datos nuevos
+        for (Profesor p : profesores) {
+            getEntityManager().refresh(p);
+        }
+
+        return profesores;
     }
 
 

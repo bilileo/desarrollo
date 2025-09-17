@@ -1,8 +1,12 @@
 package mx.desarrollo.integration;
 
 
+import mx.desarollo.entity.Profesor;
 import mx.desarrollo.facade.FacadeProfesor;
 import mx.desarrollo.facade.FacadeUnidadAprendizaje;
+import org.hibernate.query.NativeQuery;
+
+import java.util.List;
 
 
 public class ServiceFacadeLocator {
@@ -31,4 +35,5 @@ public class ServiceFacadeLocator {
             return facadeProfesor;
         }
     }
+
 }

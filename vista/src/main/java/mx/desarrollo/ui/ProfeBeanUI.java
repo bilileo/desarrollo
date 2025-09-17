@@ -22,7 +22,7 @@ import java.util.List;
 public class ProfeBeanUI implements Serializable {
 
 
-    private ProfesorHelper helper; // Para guardar y consultar
+        private ProfesorHelper helper; // Para guardar y consultar
     private Profesor profe;        // Para registro individual
     private List<Profesor> profesores; // Para mostrar en la tabla
 
@@ -59,11 +59,22 @@ public class ProfeBeanUI implements Serializable {
             e.printStackTrace();
         }
     }
+    //REFRESCAR
+    public void refrescar() {
+        try {
+            profesores = helper.obtenerProfesoresConUA();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "Datos actualizados", "La lista de profesores se refrescó."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Error al refrescar", e.getMessage()));
+            e.printStackTrace();
+        }
+    }
 
 
-    // =========================
-    // MeTODO DE ALTA
-    // =========================
     public void alta() {
         try {
             validarRFC(nombre, apellidoP, apellidoM, fechaNacimiento, rfc);
@@ -100,9 +111,6 @@ public class ProfeBeanUI implements Serializable {
     }
 
 
-    // =========================
-    // VALIDACIÓN DEL RFC
-    // =========================
     public void validarRFC(String nom, String apP, String apM, LocalDate fechaNac, String rfc) throws ValidatorException {
         if (rfc == null) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -157,10 +165,6 @@ public class ProfeBeanUI implements Serializable {
         }
     }
 
-
-    // =========================
-    // METODO PARA LIMPIAR FORMULARIO
-    // =========================
     public void limpiar() {
         nombre = apellidoP = apellidoM = rfc = null;
         fechaNacimiento = null;
@@ -168,9 +172,7 @@ public class ProfeBeanUI implements Serializable {
     }
 
 
-    // =========================
-    // GETTERS Y SETTERS
-    // =========================
+
     public List<Profesor> getProfesores() {
         return profesores;
     }
