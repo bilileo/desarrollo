@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.List;
+
 @Entity
 @Table(name = "profesor")
 public class Profesor {
@@ -36,6 +38,11 @@ public class Profesor {
     @ColumnDefault("''")
     @Column(name = "RFC", nullable = false, length = 13)
     private String rfc;
+
+    //Se agrego para consulta
+    @OneToMany(mappedBy = "idProfesor", fetch = FetchType.LAZY)
+    private List<Asignado> asignados; //lista para asignados
+
 
     public Integer getId() {
         return id;
@@ -76,5 +83,14 @@ public class Profesor {
     public void setRfc(String rfc) {
         this.rfc = rfc;
     }
+
+    public List<Asignado> getAsignados() {
+        return asignados;
+    }
+
+    public void setAsignados(List<Asignado> asignados) {
+        this.asignados = asignados;
+    }
+
 
 }

@@ -74,3 +74,34 @@ div.panel-body {
     padding: 10px;
     margin-top: auto;
 }
+.custom-table {
+    margin: auto;
+    margin-top: 100px;
+    width: 65%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1),
+    0 6px 20px rgba(0,0,0,0.1);
+}
+
+
+/* Encabezados */
+.custom-table th {
+    background-color: #f5f5f5;
+    text-align: center !important;
+    font-weight: bold;
+
+}
+
+/* Celdas */
+.custom-table td {
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+
+.Btn{
+    text-align: center;
+    align-items: center;
+}
+

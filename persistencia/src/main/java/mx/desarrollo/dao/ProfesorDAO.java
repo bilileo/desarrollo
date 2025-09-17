@@ -35,17 +35,24 @@ public class ProfesorDAO extends AbstractDAO<Profesor> {
         }
     }
 
-    /*public void guardar(Profesor profe) {
-        EntityTransaction tx = entityManager.getTransaction();
-        try {
-            tx.begin();
-            entityManager.persist(profe);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
-            throw e;
+
+
+    // ----- CONSULTAS PROFESOR -----
+    public List<Profesor> obtenerProfesoresConUA() {
+        List<Profesor> profesores = getEntityManager()
+                .createQuery("SELECT DISTINCT p FROM Profesor p " +
+                        "LEFT JOIN FETCH p.asignados a " +
+                        "LEFT JOIN FETCH a.idUa " +
+                        "ORDER BY p.nombre, p.apellidoP, p.apellidoM", Profesor.class)
+                .getResultList();
+
+        // Forzar refresh para traer datos nuevos
+        for (Profesor p : profesores) {
+            getEntityManager().refresh(p);
         }
-    }*/
+
+        return profesores;
+    }
 
     @Override
     public EntityManager getEntityManager() {

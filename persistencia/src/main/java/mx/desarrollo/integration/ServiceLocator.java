@@ -1,10 +1,14 @@
 package mx.desarrollo.integration;
 
+
 import jakarta.persistence.EntityManager;
 import mx.desarollo.entity.Profesor;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.dao.*;
 import mx.desarrollo.persistence.HibernateUtil;
+import java.util.List; //Se agregó libreria para poder manejar la lista de maestros
+
+
 
 
 /**
