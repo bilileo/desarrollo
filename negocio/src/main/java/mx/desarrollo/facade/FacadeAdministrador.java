@@ -10,7 +10,7 @@ public class FacadeAdministrador {
         this.delegateAdministrador = new DelegateAdministrador();
     }
 
-    public Administrador login(String password, String correo){
-        return delegateAdministrador.login(password, correo);
+    public Administrador login(String correo, String password){
+        return delegateAdministrador.login(correo, password);
     }
 }

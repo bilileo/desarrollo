@@ -8,15 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DelegateAdministrador {
-    public Administrador login(String password, String correo){
-        Administrador administrador = new Administrador();
-        List<Administrador> administradores = ServiceLocator.getInstanceAdministradorDAO().findAll();
+    public Administrador login(String correo, String password) {
+        List<Administrador> administradores = ServiceLocator.getInstanceAdministradorDAO().obtenerTodos();
 
-        for(Administrador admin:administradores){
-            if(admin.getPassAdministrador().equalsIgnoreCase(password) && admin.getMailAdministrador().equalsIgnoreCase(correo)){
-                administrador = admin;
+        for (Administrador admin : administradores) {
+            if (admin.getMailAdministrador().equalsIgnoreCase(correo)
+                    && admin.getPassAdministrador().equals(password)) {
+                return admin;
             }
         }
-        return administrador;
+        return null;
     }
+
 }

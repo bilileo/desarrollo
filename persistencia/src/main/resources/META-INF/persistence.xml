@@ -8,6 +8,8 @@
 
         <!-- Declaración manual de entidades -->
         <class>mx.desarollo.entity.Unidadaprendizaje</class>
+        <class>mx.desarollo.entity.Administrador</class>
+
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
