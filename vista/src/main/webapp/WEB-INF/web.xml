@@ -21,6 +21,6 @@
     </session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>GAP-US4.xhtml</welcome-file>
+    <welcome-file>loginSAUAP.xhtml</welcome-file>
   </welcome-file-list>
 </web-app>

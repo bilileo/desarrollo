@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-image: url("https://angloecuatoriana.com/wp-content/uploads/2019/11/fondo-formulario.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .panel-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            background-color: #00723f;
+        }
+        .Titulo {
+            text-shadow: none;
+            text-align: left;
+            padding-left: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .Enlaces {
+            text-shadow: none;
+            text-align: right;
+            padding-right: 30px;
+            color: white;
+        }
+        .boton-opcion {
+            width: 220px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            text-align: center;
+            color: white;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        .boton-opcion h3 {
+            margin: 0;
+            padding: 0;
+            line-height: 1.1;
+            text-align: center;
+        }
+        .footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="row">
+        <h:form>
+            <div class="panel-header">
+                <div class = "Titulo">
+                    <h2>SAUAP - Menú</h2>
+                </div>
+                <div class = "Enlaces">
+                    <p:commandButton value="Cerrar sesión" action="#{loginSAUAP.logout}" ajax="false" immediate="true" />
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; justify-items:center; margin:2rem auto; width:80%;">
+
+            <h:commandLink action="GUA-US1.xhtml" style="text-decoration:none;">
+                <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Alta de Profesores</h3>
+                    </div>
+                </h:commandLink>
+
+                <h:commandLink action="GUA-US3.xhtml" style="text-decoration:none;">
+                    <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Alta de Unidades de aprendizaje</h3>
+                    </div>
+                </h:commandLink>
+
+                <h:commandLink action="#" style="text-decoration:none;">
+                    <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Consulta de Unidades de aprendizaje</h3>
+                    </div>
+                </h:commandLink>
+
+                <h:commandLink action="#" style="text-decoration:none;">
+                    <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Modificación de Unidades de aprendizaje</h3>
+                    </div>
+                </h:commandLink>
+
+                <h:commandLink action="#" style="text-decoration:none;">
+                    <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Eliminar Unidades de aprendizaje</h3>
+                    </div>
+                </h:commandLink>
+
+                <h:commandLink action="#" style="text-decoration:none;">
+                    <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Eliminar Unidades de aprendizaje</h3>
+                    </div>
+                </h:commandLink>
+
+                <h:commandLink action="#" style="text-decoration:none;">
+                    <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Eliminar Unidades de aprendizaje</h3>
+                    </div>
+                </h:commandLink>
+
+                <h:commandLink action="#" style="text-decoration:none;">
+                    <div class="boton-opcion" style="background:#00723f;">
+                        <h3>Eliminar Unidades de aprendizaje</h3>
+                    </div>
+                </h:commandLink>
+
+            </div>
+        </h:form>
+    </div>
+    <footer class="footer">© 2025 SAUAP — Todos los derechos reservados</footer>
+</h:body>
+</html>
