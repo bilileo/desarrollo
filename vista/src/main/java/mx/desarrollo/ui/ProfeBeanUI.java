@@ -22,7 +22,7 @@ import java.util.List;
 public class ProfeBeanUI implements Serializable {
 
 
-        private ProfesorHelper helper; // Para guardar y consultar
+    private ProfesorHelper helper; // Para guardar y consultar
     private Profesor profe;        // Para registro individual
     private List<Profesor> profesores; // Para mostrar en la tabla
 

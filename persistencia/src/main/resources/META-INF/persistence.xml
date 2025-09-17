@@ -11,6 +11,7 @@
         <class>mx.desarollo.entity.Asignado</class>
         <class>mx.desarollo.entity.Profesor</class>
         <class>mx.desarollo.entity.AsignadoId</class>
+        <class>mx.desarollo.entity.Administrador</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

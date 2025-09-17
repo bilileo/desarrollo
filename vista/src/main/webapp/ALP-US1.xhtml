@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <p:inputText class="form-control"
                                      placeholder="Nombre"
-                                     value="#{ProfeBeanUI.nombre}"
+                                     value="#{profeBeanUI.nombre}"
                                      required="true"
                                      requiredMessage="El campo Nombre es obligatorio"
                                      validatorMessage="Verifica el nombre"
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <p:inputText class="form-control"
                                      placeholder="Apellido Paterno"
-                                     value="#{ProfeBeanUI.apellidoP}"
+                                     value="#{profeBeanUI.apellidoP}"
                                      required="true"
                                      requiredMessage="El campo Apellido Paterno es obligatorio"
                                      validatorMessage="Verifica el apellido Paterno"
@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <p:inputText class="form-control"
                                      placeholder="Apellido Materno"
-                                     value="#{ProfeBeanUI.apellidoM}"
+                                     value="#{profeBeanUI.apellidoM}"
                                      required="true"
                                      requiredMessage="El campo Apellido Materno es obligatorio"
                                      validatorMessage="Verifica el apellido Materno"
@@ -63,7 +63,7 @@
                     </div>
 
                     <!-- Fecha de nacimiento (solo para validacion más completa de rfc-->
-                    <p:calendar value="#{ProfeBeanUI.fechaNacimiento}"
+                    <p:calendar value="#{profeBeanUI.fechaNacimiento}"
                                 pattern="dd/MM/yyyy"
                                 placeholder="Fecha de Nacimiento"
                                 required="true"
@@ -77,18 +77,18 @@
                         <p:inputText class="form-control"
                                      placeholder="RFC"
                                      maxlength="13"
-                                     value="#{ProfeBeanUI.rfc}"
+                                     value="#{profeBeanUI.rfc}"
                                      required="true"
                                      requiredMessage="El campo RFC es obligatorio"/>
                     </div>
 
                     <!-- Botones -->
                     <p:commandButton value="Guardar"
-                                     action="#{ProfeBeanUI.alta}"
+                                     action="#{profeBeanUI.alta}"
                                      update="messages"
                                      styleClass="btn btn-success"/>
                     <p:commandButton value="Limpiar campos"
-                                     action="#{ProfeBeanUI.limpiar}"
+                                     action="#{profeBeanUI.limpiar}"
                                      update="@form"
                                      process="@this"/>
                 </div>
