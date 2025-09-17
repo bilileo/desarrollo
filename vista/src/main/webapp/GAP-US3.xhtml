@@ -7,41 +7,22 @@
 
     <h:head>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/style.css" rel="stylesheet" type="text/css"/>
         <style>
-            
-            *{
-                text-align: center;
-            }
-            .center{
-                float: none;
-                margin: 0 auto;
-                
-            }
-            
-           
-            div.login{
+            .panel-body-custom {
                 position: absolute;
-                top:0;
+                top: 100px;
                 bottom: 0;
                 left: 0;
                 right: 0;
-                height: 35%;
-                width: 25%;
+                height: 90%;
+                width: 95%;
                 padding: 25px;
                 margin: auto;
-                background: white;
                 border-radius: 5px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            }
-            .logo{
-                width: 150px;
-            }
-            .form-control:focus{
-                border-color:#007738;
-            }
-            .btn-success{
-                text-shadow: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                background-color: white;
             }
         </style>
     </h:head>
@@ -54,11 +35,16 @@
 
                 <div class="panel">
                     <div class="panel-header">
-                        <p:graphicImage url="resources/uabcl.png" class="logo" />
-                        <h2>Modificación de Unidad de Aprendizaje a Profesores</h2>
+                        <div class="Titulo">
+                            <p:button value="Regresar" outcome="indexSAUAP.xhtml" />
+                            <h2>Asignación de Unidad de Aprendizaje a profesores</h2>
+                        </div>
+                        <div class="Enlaces">
+                            <p:button value="Cerrar sesión" outcome="loginSAUAP.xhtml" />
+                        </div>
                     </div>
-
-                    <div class="panel-body">
+                </div>
+                    <div class="panel-body-custom">
 
                         <p:panelGrid columns="6" layout="grid">
                             <p:column>
@@ -956,7 +942,6 @@
                         <p:commandButton value="Modificar"
                                          action="#{asignacionBeanUI.modificar}"
                                          update="messages"/>
-                    </div>
                 </div>
             </h:form>
         </div>
