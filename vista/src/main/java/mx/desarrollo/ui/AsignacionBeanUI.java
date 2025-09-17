@@ -9,9 +9,11 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import mx.desarollo.entity.Asignado;
 import mx.desarrollo.helper.AsignacionUnidadAprendizajeProfesorHelper;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Named("asignacionBeanUI")
 @SessionScoped
@@ -25,6 +27,7 @@ public class AsignacionBeanUI implements Serializable {
     private boolean[] miercoles;
     private boolean[] jueves;
     private boolean[] viernes;
+    private List<Asignado> profesores;
 
     public AsignacionBeanUI() {
         asignarHelper = new AsignacionUnidadAprendizajeProfesorHelper();
@@ -33,6 +36,22 @@ public class AsignacionBeanUI implements Serializable {
         miercoles = new boolean[24];
         jueves = new boolean[24];
         viernes = new boolean[24];
+    }
+
+    public void consultaUA(){
+        profesores = asignarHelper.Consulta(idUA);
+    }
+
+    public void consultaProfe(){
+        for(Asignado a: profesores){
+            if(a.getId().getIdProfesor().equals(idProfesor)){
+                lunes = asignarHelper.convert(a.getLunes());
+                martes = asignarHelper.convert(a.getMartes());
+                miercoles = asignarHelper.convert(a.getMiercoles());
+                jueves = asignarHelper.convert(a.getJueves());
+                viernes = asignarHelper.convert(a.getViernes());
+            }
+        }
     }
 
     public void asignar() {
@@ -161,5 +180,11 @@ public class AsignacionBeanUI implements Serializable {
 
     public boolean[] getViernes() { return viernes; }
     public void setViernes(boolean[] viernes) { this.viernes = viernes; }
+    public List<Asignado> getProfesores(){
+        return  profesores;
+    }
+    public void setProfesores(List<Asignado> asignados){
+        this.profesores = asignados;
+    }
 }
 

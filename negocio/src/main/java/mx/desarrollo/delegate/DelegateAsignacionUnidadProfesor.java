@@ -6,6 +6,7 @@ import mx.desarollo.entity.Profesor;
 import mx.desarollo.entity.Unidadaprendizaje;
 import mx.desarrollo.integration.ServiceLocator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,31 @@ public class DelegateAsignacionUnidadProfesor {
             }
         }
         return byteArray;
+    }
+    public static boolean[] toBooleanArray(byte[] byteArray) {
+        if (byteArray == null) {
+            return null;
+        }
+        boolean[] booleanArray = new boolean[byteArray.length * 8];
+
+        for (int i = 0; i < byteArray.length; i++) {
+            byte currentByte = byteArray[i];
+            for (int bitIndex = 0; bitIndex < 8; bitIndex++) {
+                booleanArray[i * 8 + bitIndex] = ((currentByte >> bitIndex) & 1) != 0;
+            }
+        }
+        return booleanArray;
+    }
+
+    public List<Asignado> consultar(Integer idUA) {
+        List<Asignado> all = ServiceLocator.getInstanceAsignadoDAO().findAll();
+        List<Asignado> filtered = new ArrayList<>();
+        for(Asignado asignado : all) {
+            if(asignado.getId().getIdUa().equals(idUA)) {
+                filtered.add(asignado);
+            }
+        }
+        return filtered;
     }
 
     public int TotalHorasRequeridas(Integer idUA) {
